@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const SectionContainer = styled.div`
   width: auto;
-  padding-top: ${props => props.yPadding || null};
-  padding-bottom: ${props => props.yPadding || null};
-  padding-left: ${props => props.xPadding || null};
-  padding-right: ${props => props.xPadding || null};
+  padding-top: ${props => props.pTop || null};
+  padding-bottom: ${props => props.pBot || null};
+  padding-left: ${props => props.pLeft || null};
+  padding-right: ${props => props.pRight || null};
   
   @media (min-width: 768px) {
     max-width: 900px;
@@ -25,9 +25,9 @@ const FullContainer = styled.div`
   width: 100%;
 `;
 
-export const Container = ({ children }) => {
+export const Container = ({ children, ...props }) => {
   return (
-    <SectionContainer>
+    <SectionContainer {...props}>
       {children}
     </SectionContainer>
   );

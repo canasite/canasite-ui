@@ -1,23 +1,40 @@
 import React, { Component } from 'react';
 import reset from 'react-style-reset/string';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { FontsDeclaration } from './fonts/font-declaration';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { Container, FluidContainer } from './layout/layout';
+import { Home } from './pages/Home';
+import { ProductPage } from './pages/ProductPage';
 import { Header } from './components/header';
-import { Carousel } from './components/carousel';
-import { Notification } from './components/notification';
-import { ProductSection } from './components/productsSection';
 import { SideNavigation } from './components/sideNavigation';
 import { Footer } from './components/footer';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
   ${FontsDeclaration};
+
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
+
   html, body {
     overflow-x: hidden;
     font-family: 'Betm Book';
   }
+
+  a {
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
 `;
 
 class App extends Component {
@@ -37,12 +54,13 @@ class App extends Component {
     return (
       <>
         <GlobalStyles/>
-        <Header handleShowSideNav={this.showSideNav}></Header>
-        <SideNavigation isActive={this.state.isSideNavActive} handleShowSideNav={this.showSideNav}></SideNavigation>
-        <Carousel></Carousel>
-        <Notification></Notification>
-        <ProductSection></ProductSection>
-        <Footer></Footer>
+        <Router>
+          <Header handleShowSideNav={this.showSideNav}></Header>
+          <SideNavigation isActive={this.state.isSideNavActive} handleShowSideNav={this.showSideNav}></SideNavigation>
+          <Route exact path="/" component={Home} />
+          <Route path="/products/" component={ProductPage} />
+          <Footer></Footer>
+        </Router>
       </>
     );
   }

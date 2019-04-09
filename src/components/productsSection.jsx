@@ -29,7 +29,7 @@ export const ProductSection = ({children}) => {
 
       <MobileBreakpoint>
         <SideNavigation></SideNavigation>
-        <Container>
+        <Container pBot={"3rem"}>
           <ProductList>
             <ProductRowHeader title='Top ventes' iconSrc={TopSalesIcon}></ProductRowHeader>
             <ProductRow>

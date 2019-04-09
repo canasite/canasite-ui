@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 
 import Logo from '../assets/icons/logo.svg';
@@ -18,7 +19,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${props => props.padding || '32px'};
+  padding: ${props => props.padding || '3rem'};
   background-color: ${props => props.backgroundColor || '#79CEA7'};
   box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.2);
 `;
@@ -71,48 +72,50 @@ export const Header = (props) => {
   let { isActive, handleShowSideNav } = props;
   return (
     <>
-    <MobileBreakpoint>
-      <StyledHeader height={"1rem"} padding={"2rem 1rem"}>
-        <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={handleShowSideNav}></Icon>
-        <a href="/">
-          <Icon src={Logo} alt="Logo" width="72px"></Icon>
-        </a>
-        <SideBar width={'64px'}>
-          <Icon src={SearchIcon} alt="Rechercher des produits" width="24px"></Icon>
-          <Icon src={CardIcon} alt="Votre panier" width="28px"></Icon>
-        </SideBar>
-      </StyledHeader>
-    </MobileBreakpoint>
-
-    <TabletBreakpoint>
-      <StyledHeader>
-        <Icon src={isActive ? HamburgerMenuClose : HamburgerMenu} alt="Menu" width="24px" onClick={handleShowSideNav}></Icon>
-        <a href="/">
-          <Icon src={Logo} alt="Logo"></Icon>
-        </a>
-        <SideBar width={'100px'}>
-          <Icon src={SearchIcon} alt="Rechercher des produits"></Icon>
-          <Icon src={CardIcon} alt="Votre panier"></Icon>
-        </SideBar>
-      </StyledHeader>
-    </TabletBreakpoint>
-
-    <DesktopBreakpoint>
-      <StyledHeader>
-        <img src={Logo} alt="Logo"/>
-        <SideBar width={'450px'}>
-          <SideBar width={'350px'}>
-            <Title><a href="">Mon compte</a></Title>
-            <Title mLeft={'12px'}><a href="">Réglages</a></Title>
-            <Title mLeft={'12px'}><a href="">Mon compte</a></Title>
+      <MobileBreakpoint>
+        <StyledHeader height={"1rem"} padding={"2rem 1rem"}>
+          <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={handleShowSideNav}></Icon>
+          <Link to="/">
+            <Icon src={Logo} alt="Logo" width="72px"></Icon>
+          </Link>
+          <SideBar width={'64px'}>
+            <Icon src={SearchIcon} alt="Rechercher des produits" width="24px"></Icon>
+            <Icon src={CardIcon} alt="Votre panier" width="28px"></Icon>
           </SideBar>
-          <SideBar width={'100px'} pLeft={'32px'}>
+        </StyledHeader>
+      </MobileBreakpoint>
+
+      <TabletBreakpoint>
+        <StyledHeader>
+          <Icon src={isActive ? HamburgerMenuClose : HamburgerMenu} alt="Menu" width="24px" onClick={handleShowSideNav}></Icon>
+          <Link to="/">
+            <Icon src={Logo} alt="Logo"></Icon>
+          </Link>
+          <SideBar width={'100px'}>
             <Icon src={SearchIcon} alt="Rechercher des produits"></Icon>
             <Icon src={CardIcon} alt="Votre panier"></Icon>
           </SideBar>
-        </SideBar>
-      </StyledHeader>
-    </DesktopBreakpoint>
+        </StyledHeader>
+      </TabletBreakpoint>
+
+      <DesktopBreakpoint>
+        <StyledHeader>
+          <Link to="/">
+            <Icon src={Logo} alt="Logo"></Icon>
+          </Link>
+          <SideBar width={'450px'}>
+            <SideBar width={'350px'}>
+              <Title><Link to="">Mon compte</Link></Title>
+              <Title mLeft={'12px'}><Link to="">Réglages</Link></Title>
+              <Title mLeft={'12px'}><Link to="">Mon compte</Link></Title>
+            </SideBar>
+            <SideBar width={'100px'} pLeft={'32px'}>
+              <Icon src={SearchIcon} alt="Rechercher des produits"></Icon>
+              <Icon src={CardIcon} alt="Votre panier"></Icon>
+            </SideBar>
+          </SideBar>
+        </StyledHeader>
+      </DesktopBreakpoint>
     </>
   );
 };

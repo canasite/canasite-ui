@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SortIcon from '../assets/icons/SortIcon.svg';
 import MoreActionsIcon from '../assets/icons/MoreActionsIcon.svg';
+import { MobileBreakpoint, TabletBreakpoint,DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +46,15 @@ export const ProductRowHeader = ({ title, iconSrc }) => {
   return (
     <Container>
       <RowTitle>
-        <Icon src={iconSrc} width="24px" mRight="8px"></Icon>
+        <MobileBreakpoint>
+          <Icon src={iconSrc} width="24px" mRight="8px"></Icon>
+        </MobileBreakpoint>
+        <TabletBreakpoint>
+          <Icon src={iconSrc} width="32px" mRight="8px"></Icon>
+        </TabletBreakpoint>
+        <DesktopBreakpoint>
+          <Icon src={iconSrc} width="32px" mRight="8px"></Icon>
+        </DesktopBreakpoint>
         {title}
       </RowTitle>
       <div>

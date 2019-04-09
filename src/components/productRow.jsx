@@ -5,18 +5,19 @@ import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout
 const Row = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin-left: -.5rem;
-  margin-right: -1rem;
+  padding: 0 .5rem;
   overflow-x: scroll;
   overflow-x: -ms-overflow-style: none;
   scrollbar-width: none;
  
-  &::-webkit-scrollbar { width: 0 !important };
+  &::-webkit-scrollbar {
+    width: 0 !important
+  };
 
   @media (min-width: 768px) {
     overflow-x: hidden;
     margin: 0 -1rem;
-    padding-bottom: 1.5rem;
+    padding: 1rem 0;
   }
 `;
 

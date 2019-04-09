@@ -13,7 +13,7 @@ const Hero = styled.section`
   position: relative;
   height: 175px;
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 4rem;
 
   div {
     outline: none;
@@ -21,15 +21,27 @@ const Hero = styled.section`
   
   @media (min-width: 768px) {
     height: 250px;
-    margin-top: 7rem;
+    margin-top: 6rem;
   }
 
   @media (min-width: 768px) {
     height: 300px;
   }
-  `;
+`;
+
+const CarouselImageWrapper = styled.div`
+  width: 50% !important;
+
+  @media (min-width: 768px) {
+    width: 90% !important;
+  }
+
+  @media (min-width: 1024px) {
+    width: 100% !important;
+  }
+`;
   
-  const CarouselImage = styled.div`
+const CarouselImage = styled.div`
   background: ${props => `url(${props.bckImg}) center no-repeat`};
   background-size: cover;
   height: 175px;
@@ -57,14 +69,29 @@ const Overlay = styled.div`
 const PromoContainer = styled.ul`
   z-index: 3;
   position: absolute;
-  top: 20%;
-  right: 15vw;
-  max-width: 20vw;
+  top: 15%;
+  right: 5vw;
+  max-width: 50vw;
   color: white;
   pointer-events: none;
+
+  @media (min-width: 768px) {
+    top: 20%;
+    right: 10vw;
+    max-width: 30vw;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 25vw;
+  }
 `;
 
-const PromoItem = styled.li`
+const AnimatedPromo = Pose.li({
+  enter: {opacity: 1},
+  exit: {opacity: 0}
+});
+
+const PromoItem = styled(AnimatedPromo)`
   display: flex;
   flex-direction: column;
 `;
@@ -72,27 +99,44 @@ const PromoItem = styled.li`
 const PromoCategory = styled.span`
   align-self: flex-start;
   padding: .25rem .5rem;
-  margin-bottom: .5rem;
+  margin-bottom: .25rem;
+  font-size: .8rem;
   border-radius: 5px;
   border: 1px solid white;
+  
+  @media (min-width: 768px) {
+    font-size: 1.15rem;
+    margin-bottom: .5rem;
+  }
 `;
 
 const PromoTitle = styled.h4`
   font-family: 'Betm Book';
-  font-size: 2rem;
+  font-size: 1.25rem;
   letter-spacing: -.02rem;
   margin-bottom: .25rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2rem;
+  }
 `;
 
-const AnimatedPromoCopy = Pose.p({
-  in: {opacity: 1},
-  out: {opacity: 0}
-});
-
-const PromoCopy = styled(AnimatedPromoCopy)`
+const PromoCopy = styled.p`
   font-family: 'Betm Book';
-  font-size: 1.25rem;
+  font-size: .85rem;
   line-height: 1.15;
+
+  @media (min-width: 768px) {
+    font-size: 1.15rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
 `;
 
 
@@ -133,16 +177,18 @@ export class Carousel extends Component {
         {
           category: 'Exclus',
           title: 'Golden Insulins',
-          copy: 'It would be necessary to define how JSX behaves within the rest of the ECMAScript grammar within the template literal anyway.'
+          copy: 'It would be necessary to define how JSX behaves within the rest.'
         }
       ]
     };
   }
+
   render() {
     const settings = {
       dots: false,
+      arrows: false,
       autoplaySpeed: 4500,
-      speed: 1000,
+      speed: 1600,
       infinite: true,
       autoplay: false,
       beforeChange: (prevIndex, curIndex) => this.setState(prevState => ({ currentIndex: curIndex }))
@@ -152,22 +198,22 @@ export class Carousel extends Component {
       <Hero>
         <Overlay></Overlay>
         <PromoContainer>
-          <PromoItem>
+          <PromoItem pose={this.state.currentIndex < 2 ? 'in' : 'out'}>
             <PromoCategory>{this.state.promos[this.state.currentIndex].category}</PromoCategory>
             <PromoTitle>{this.state.promos[this.state.currentIndex].title}</PromoTitle>
-            <PromoCopy pose={this.state.currentIndex < 1 ? 'in' : 'out'}>{this.state.promos[this.state.currentIndex].copy}</PromoCopy>
+            <PromoCopy>{this.state.promos[this.state.currentIndex].copy}</PromoCopy>
           </PromoItem>
         </PromoContainer>
         <ReactCarousel {...settings}>
-          <div>
+          <CarouselImageWrapper>
             <CarouselImage bckImg={Image1} alt="C"></CarouselImage>
-          </div>
-          <div>
+          </CarouselImageWrapper>
+          <CarouselImageWrapper>
             <CarouselImage bckImg={Image2} alt="C"/>
-          </div>
-          <div>
+          </CarouselImageWrapper>
+          <CarouselImageWrapper>
             <CarouselImage bckImg={Image3} alt="C"/>
-          </div>
+          </CarouselImageWrapper>
         </ReactCarousel>
       </Hero>
     );

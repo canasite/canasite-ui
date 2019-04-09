@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pose from 'react-pose';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
+import { Link } from "react-router-dom";
 
-import Image1 from '../assets/images/1.jpg';
-import Image2 from '../assets/images/2.jpg';
-import Image3 from '../assets/images/3.jpg';
 import Image4 from '../assets/images/4.jpg';
 
-const Container = styled.li`
+const ProductContainer = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,9 +19,19 @@ const Container = styled.li`
   }
 `;
   
-const Thumbnail = styled.img`
+const ThumbnailComponent = styled.img`
   border-radius: 5px;
 `;
+
+const Thumbnail = Pose(ThumbnailComponent)({
+  hoverable: true,
+  init: {
+    scale: 1
+  },
+  hover: {
+    scale: 1.1
+  }
+});
 
 const ProductDetails = styled.div`
   display: flex;
@@ -56,41 +65,52 @@ const PriceTag = styled.span`
 const ProductCategory = styled.p`
   font-family: 'Betm Light';
   font-size: .85rem;
-  color: hsl(0,0%,80%)
+  color: hsl(0,0%,80%);
+  margin-bottom: .5rem;
 `;
 
 export const ProductCard = (props) => {
   return (
     <>
       <MobileBreakpoint>
-        <Container {...props}>
-          <Thumbnail src={Image4} alt="" width={"125px"}></Thumbnail>
-          <ProductDetails>
-            <ProductCategory>{props.category}</ProductCategory>
-            <Title>{props.title}</Title>
-            <PriceDetails><PriceTag>{props.price}</PriceTag> €/g</PriceDetails>
-          </ProductDetails>
-        </Container>
+        <Link to="/products">
+          <ProductContainer {...props}>
+            <Thumbnail src={Image4} alt="" width={"125px"}></Thumbnail>
+            <ProductDetails>
+              <ProductCategory>{props.category}</ProductCategory>
+              <Title>{props.title}</Title>
+              <PriceDetails><PriceTag>{props.price}</PriceTag> €/g</PriceDetails>
+            </ProductDetails>
+          </ProductContainer>
+        </Link>
       </MobileBreakpoint>
+
       <TabletBreakpoint>
-        <Container {...props}>
-          <Thumbnail src={Image4} alt="" width={"175px"}></Thumbnail>
-          <ProductDetails>
-            <ProductCategory>{props.category}</ProductCategory>
-            <Title>{props.title}</Title>
-            <PriceDetails><PriceTag>{props.price}</PriceTag> €/g</PriceDetails>
-          </ProductDetails>
-        </Container>
+        <Link to="/products">
+          <ProductContainer {...props}>
+            <Thumbnail src={Image4} alt="" width={"175px"}></Thumbnail>
+            <ProductDetails>
+              <ProductCategory>{props.category}</ProductCategory>
+              <Title>{props.title}</Title>
+              <PriceDetails><PriceTag>{props.price}</PriceTag> €/g</PriceDetails>
+            </ProductDetails>
+          </ProductContainer>
+        </Link>
       </TabletBreakpoint>
+
       <DesktopBreakpoint>
-        <Container {...props}>
-          <Thumbnail src={Image4} alt="" width={"175px"}></Thumbnail>
+        <ProductContainer {...props}>
+          <Link to="/products">
+            <Thumbnail src={Image4} alt="" width={"175px"}></Thumbnail>
+          </Link>
           <ProductDetails>
             <ProductCategory>{props.category}</ProductCategory>
-            <Title>{props.title}</Title>
+            <Link to="/products">
+              <Title>{props.title}</Title>
+            </Link>
             <PriceDetails><PriceTag>{props.price}</PriceTag> €/g</PriceDetails>
           </ProductDetails>
-        </Container>
+        </ProductContainer>
       </DesktopBreakpoint>
     </>
   );
