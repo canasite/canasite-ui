@@ -80,7 +80,9 @@ export const Header = (props) => {
           </Link>
           <SideBar width={'64px'}>
             <Icon src={SearchIcon} alt="Rechercher des produits" width="24px"></Icon>
-            <Icon src={CardIcon} alt="Votre panier" width="28px"></Icon>
+            <Link to='/checkout'>
+              <Icon src={CardIcon} alt="Votre panier" width="28px"></Icon>
+            </Link>
           </SideBar>
         </StyledHeader>
       </MobileBreakpoint>
@@ -93,7 +95,9 @@ export const Header = (props) => {
           </Link>
           <SideBar width={'100px'}>
             <Icon src={SearchIcon} alt="Rechercher des produits"></Icon>
-            <Icon src={CardIcon} alt="Votre panier"></Icon>
+            <Link to='/checkout'>
+              <Icon src={CardIcon} alt="Votre panier"></Icon>
+            </Link>
           </SideBar>
         </StyledHeader>
       </TabletBreakpoint>
@@ -111,7 +115,9 @@ export const Header = (props) => {
             </SideBar>
             <SideBar width={'100px'} pLeft={'32px'}>
               <Icon src={SearchIcon} alt="Rechercher des produits"></Icon>
-              <Icon src={CardIcon} alt="Votre panier"></Icon>
+              <Link to='/checkout'>
+                <Icon src={CardIcon} alt="Votre panier"></Icon>
+              </Link>
             </SideBar>
           </SideBar>
         </StyledHeader>

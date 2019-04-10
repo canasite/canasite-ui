@@ -9,6 +9,7 @@ import { ProductPage } from './pages/ProductPage';
 import { Header } from './components/header';
 import { SideNavigation } from './components/sideNavigation';
 import { Footer } from './components/footer';
+import { CheckoutPage } from './pages/CheckoutPage';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -59,6 +60,7 @@ class App extends Component {
           <SideNavigation isActive={this.state.isSideNavActive} handleShowSideNav={this.showSideNav}></SideNavigation>
           <Route exact path="/" component={Home} />
           <Route path="/products/" component={ProductPage} />
+          <Route path="/checkout/" component={CheckoutPage} />
           <Footer></Footer>
         </Router>
       </>
