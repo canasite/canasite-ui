@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 import { CheckoutAdress } from './checkoutAdress.jsx';
 
+import AdressIconDark from '../assets/icons/adress-icon-dark.svg';
+
 const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -10,11 +12,37 @@ const Container = styled.section`
   border-bottom: 1px solid hsl(0,0%,90%);
 `;
 
-const Title = styled.h1`
+const Icon = styled.img`
+  width: ${props => props.width || 'auto'};
+  height: ${props => props.height || 'auto'};
+  margin-right: .5rem;
+  vertical-align: middle;
+
+  :hover {
+    cursor: pointer;
+  };
+
+  @media (min-width: 1024px) {
+    width: 28px;
+    height: 28px;
+    margin-right: .75rem;
+  }
+`;
+
+const Title = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
+`;
+
+const Heading = styled.h1`
   font-family: 'Betm Light';
   font-size: 1rem;
   color: hsl(0,0%,50%);
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Adresses = styled.form`
@@ -40,7 +68,10 @@ export class CheckoutAdresses extends Component {
   render() {
     return (
       <Container>
-        <Title>Mes adresses</Title>
+        <Title>
+          <Icon src={AdressIconDark} width={"16px"}></Icon>
+          <Heading>Mes adresses</Heading>
+        </Title>
         <Adresses>
           <CheckoutAdress label="Maison" isSelected={this.state.selectedAdress === "Maison"} handleChange={this.handleChange}></CheckoutAdress>
           <CheckoutAdress label="Home"  isSelected={this.state.selectedAdress === "Home"} handleChange={this.handleChange}></CheckoutAdress>

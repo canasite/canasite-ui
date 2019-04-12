@@ -10,19 +10,58 @@ import { CheckoutCta } from '../components/checkoutCta';
 const CustomContainer = styled(Container)`
   margin-top: 4rem;
   padding: 0 1rem;
+  padding-bottom: 4rem;
 
   @media (min-width: 768px) {
     margin-top: 6rem;
   }
 `;
 
+const TabletCtaSection = styled.section`
+  display: flex;
+`;
+
+const TabletTotal = styled(CheckoutTotal)`
+  flex-basis: 50%;
+  margin-right: 2rem;
+  border: none;
+`;
+
+const TabletCta = styled(CheckoutCta)`
+  flex-basis: 50%;
+`;
+
 export const CheckoutPage = () => {
   return (
-    <CustomContainer>
-      <CheckoutProducts></CheckoutProducts>
-      <CheckoutAdresses></CheckoutAdresses>
-      <CheckoutTotal></CheckoutTotal>
-      <CheckoutCta></CheckoutCta>
-    </CustomContainer>
+    <>
+      <MobileBreakpoint>
+        <CustomContainer>
+          <CheckoutProducts></CheckoutProducts>
+          <CheckoutAdresses></CheckoutAdresses>
+          <CheckoutTotal></CheckoutTotal>
+          <CheckoutCta></CheckoutCta>
+        </CustomContainer>
+      </MobileBreakpoint>
+
+      <TabletBreakpoint>
+        <CustomContainer>
+          <CheckoutProducts></CheckoutProducts>
+          <CheckoutAdresses></CheckoutAdresses>
+          <TabletCtaSection>
+            <TabletTotal></TabletTotal>
+            <TabletCta></TabletCta>
+          </TabletCtaSection>
+        </CustomContainer>
+      </TabletBreakpoint>
+
+      <DesktopBreakpoint>
+        <CustomContainer>
+          <CheckoutProducts></CheckoutProducts>
+          <CheckoutAdresses></CheckoutAdresses>
+          <CheckoutTotal></CheckoutTotal>
+          <CheckoutCta></CheckoutCta>
+        </CustomContainer>
+      </DesktopBreakpoint>
+    </>
   );
 };

@@ -22,7 +22,7 @@ const Icon = styled.img`
   };
 `;
 
-const SideNav = styled.aside`
+const Container = styled.aside`
   z-index: 500;
   position: fixed;
   left: 0;
@@ -30,12 +30,25 @@ const SideNav = styled.aside`
   bottom: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 250px;
-  padding: 1rem 2rem;
-  transform: ${props => props.isActive ? 'translateX(0px)' : 'translateX(-314px)'};
+  width: 16rem;
+  height: 100vh;
+  padding: 2rem;
+  transform: ${props => props.isActive ? 'translateX(0px)' : 'translateX(-18rem)'};
   transition: transform .3s ease-out;
   background-color: hsla(0,0%,97%,1);
+  
+  @media (min-width: 768px) {
+    width: 24rem;
+    transform: ${props => props.isActive ? 'translateX(0px)' : 'translateX(-26rem)'}; 
+  }
+`;
+
+const SideListContainer = styled.div`
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2rem;
 `;
 
 const SideNavList = styled.ul`
@@ -66,58 +79,58 @@ const SideNavItemLabel = styled.span`
 `;
 
 const CloseNavRow = styled.div`
-  display: flex;
-  padding: 1rem 0;
 `;
 
 export const SideNavigation = (props) => {
   
   let { isActive, handleShowSideNav } = props;
   return (
-    <SideNav isActive={isActive}>
-    <SideNavList>
+    <Container isActive={isActive}>
       <CloseNavRow>
         <Icon src={HamburgerMenuClose} alt="Close navigation" bColor={"#79CEA7"} padding={"1rem"} onClick={handleShowSideNav}></Icon>
       </CloseNavRow>
-      <SideNavItem>
-        <IconContainer>
-          <Icon src={CannabisIcon} alt="Cannabis"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Cannabis</SideNavItemLabel>
-      </SideNavItem>
-      <SideNavItem border>
-        <IconContainer>
-          <Icon src={SeedIcon} alt="Seeds"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Graines</SideNavItemLabel>
-      </SideNavItem>
-      <SideNavItem border>
-        <IconContainer>
-          <Icon src={PipeIcon} alt="Accessories"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Accessoires</SideNavItemLabel>
-      </SideNavItem>
-      <SideNavItem border>
-        <IconContainer>
-          <Icon src={OilIcon} alt="Oils"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Huiles</SideNavItemLabel>
-      </SideNavItem>
-    </SideNavList>
-    <SideNavList>
-      <SideNavItem>
-        <IconContainer>
-          <Icon src={AccountIcon} alt="Account" width="25px" height="25px"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Mon Compte</SideNavItemLabel>
-      </SideNavItem>
-      <SideNavItem border>
-        <IconContainer>
-          <Icon src={SettingsIcon} alt="Account" width="25px" height="25px"></Icon>
-        </IconContainer>
-        <SideNavItemLabel>Réglages</SideNavItemLabel>
-      </SideNavItem>
-    </SideNavList>
-  </SideNav>
+      <SideListContainer>
+        <SideNavList>
+          <SideNavItem>
+            <IconContainer>
+              <Icon src={CannabisIcon} alt="Cannabis"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Cannabis</SideNavItemLabel>
+          </SideNavItem>
+          <SideNavItem border>
+            <IconContainer>
+              <Icon src={SeedIcon} alt="Seeds"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Graines</SideNavItemLabel>
+          </SideNavItem>
+          <SideNavItem border>
+            <IconContainer>
+              <Icon src={PipeIcon} alt="Accessories"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Accessoires</SideNavItemLabel>
+          </SideNavItem>
+          <SideNavItem border>
+            <IconContainer>
+              <Icon src={OilIcon} alt="Oils"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Huiles</SideNavItemLabel>
+          </SideNavItem>
+        </SideNavList>
+        <SideNavList>
+          <SideNavItem>
+            <IconContainer>
+              <Icon src={AccountIcon} alt="Account" width="25px" height="25px"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Mon Compte</SideNavItemLabel>
+          </SideNavItem>
+          <SideNavItem border>
+            <IconContainer>
+              <Icon src={SettingsIcon} alt="Account" width="25px" height="25px"></Icon>
+            </IconContainer>
+            <SideNavItemLabel>Réglages</SideNavItemLabel>
+          </SideNavItem>
+        </SideNavList>
+      </SideListContainer>
+    </Container>
   );
 }

@@ -8,14 +8,21 @@ import NewProductsIcon from '../assets/icons/newProductsIcon.svg';
 import { Container } from '../layout/layout';
 import { ProductRowHeader } from './productRowHeader';
 import { ProductRow } from './productRow';
-import { SideNavigation } from './sideNavigation';
+import { SideNavigation} from './sideNavigation';
+import { SideNavigationDesktop } from './sideNavigationDesktop';
 import { ProductCard } from './productCard';
 import { MoreButton } from './moreButton';
 
 const ProductList = styled.section`
-  padding-top: 1rem;
+  padding-top: 2rem;
   
   @media (min-width: 768px) {
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
     padding-bottom: 4rem;
   }
 `;
@@ -28,7 +35,6 @@ export const ProductSection = ({children}) => {
     <>  
 
       <MobileBreakpoint>
-        <SideNavigation></SideNavigation>
         <Container pBot={"3rem"}>
           <ProductList>
             <ProductRowHeader title='Top ventes' iconSrc={TopSalesIcon}></ProductRowHeader>
@@ -71,8 +77,6 @@ export const ProductSection = ({children}) => {
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
-            </ProductRow>
-            <ProductRow>
               <ProductCard title='CBD OG KUSH VERYLONG' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
@@ -88,8 +92,6 @@ export const ProductSection = ({children}) => {
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
-            </ProductRow>
-            <ProductRow>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
@@ -103,6 +105,7 @@ export const ProductSection = ({children}) => {
       <DesktopBreakpoint>
         <Container>
           <ProductList>
+            <SideNavigationDesktop></SideNavigationDesktop>
             <ProductRowHeader title='Top ventes' iconSrc={TopSalesIcon}></ProductRowHeader>
             <ProductRow>
               <ProductCard title='CBD OG KUSH VERYLONG' price={50} category={'Cannabis'}></ProductCard>
@@ -110,8 +113,6 @@ export const ProductSection = ({children}) => {
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
-            </ProductRow>
-            <ProductRow>
               <ProductCard title='CBD OG KUSH VERYLONG' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
@@ -127,8 +128,6 @@ export const ProductSection = ({children}) => {
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
-            </ProductRow>
-            <ProductRow>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>
               <ProductCard title='CBD OG KUSH' price={50} category={'Cannabis'}></ProductCard>

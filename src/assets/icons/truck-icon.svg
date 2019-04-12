@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44.598" height="24.196" viewBox="0 0 44.598 24.196">
+  <g id="Groupe_127" data-name="Groupe 127" transform="translate(0.75 0.75)">
+    <path id="Tracé_32" data-name="Tracé 32" d="M276.245,1607.893h4.725" transform="translate(-273.718 -1603.2)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="Tracé_33" data-name="Tracé 33" d="M276.245,1607.893h4.725" transform="translate(-276.245 -1599.072)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="Tracé_34" data-name="Tracé 34" d="M276.245,1607.893h4.725" transform="translate(-274.729 -1595.449)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-width="1.5"/>
+    <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(15.208 17.381)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-width="1.5">
+      <ellipse cx="3.032" cy="3.032" rx="3.032" ry="3.032" stroke="none"/>
+      <ellipse cx="3.032" cy="3.032" rx="2.282" ry="2.282" fill="none"/>
+    </g>
+    <g id="Ellipse_17" data-name="Ellipse 17" transform="translate(29.358 17.381)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-width="1.5">
+      <ellipse cx="3.032" cy="3.032" rx="3.032" ry="3.032" stroke="none"/>
+      <ellipse cx="3.032" cy="3.032" rx="2.282" ry="2.282" fill="none"/>
+    </g>
+    <path id="Tracé_36" data-name="Tracé 36" d="M287.723,1598.608h6.22l4.627,5.5H287.723Z" transform="translate(-255.473 -1594.311)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Soustraction_3" data-name="Soustraction 3" d="M5.453,19.4H0V0H21.694V17.935A2.478,2.478,0,0,0,19.6,19.4H9.989a2.484,2.484,0,0,0-4.536,0Zm27.126,0H24.139a2.489,2.489,0,0,0-2.269-1.471c-.046,0-.093,0-.14,0V9.7H32.578v9.7Z" transform="translate(10.519 0)" fill="none" stroke="#79cea7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

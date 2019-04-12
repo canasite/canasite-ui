@@ -10,6 +10,7 @@ import { Header } from './components/header';
 import { SideNavigation } from './components/sideNavigation';
 import { Footer } from './components/footer';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { SettingsPage } from './pages/SettingsPage';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -61,6 +62,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/products/" component={ProductPage} />
           <Route path="/checkout/" component={CheckoutPage} />
+          <Route path="/settings/" component={SettingsPage} />
           <Footer></Footer>
         </Router>
       </>

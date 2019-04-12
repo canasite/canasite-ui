@@ -13,10 +13,6 @@ const ProductContainer = styled.li`
   flex-basis: 0;
   padding: 0 .5rem;
   text-align: center;
-
-  @media (min-width: 768px) {
-    padding: 0 1rem;
-  }
 `;
   
 const ThumbnailComponent = styled.img`

@@ -9,14 +9,13 @@ const SectionContainer = styled.div`
   padding-right: ${props => props.pRight || null};
   
   @media (min-width: 768px) {
-    max-width: 900px;
+    max-width: 1024px;
     margin: 0 auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem;
   }
 
   @media (min-width: 1024px) {
-    max-width: 1024px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 `;
@@ -33,9 +32,9 @@ export const Container = ({ children, ...props }) => {
   );
 };
 
-export const FluidContainer = ({ children }) => {
+export const FluidContainer = ({ children, ...props }) => {
   return (
-    <FullContainer>
+    <FullContainer {...props}>
       {children}
     </FullContainer>
   );

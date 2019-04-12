@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 import { CheckoutProduct } from './checkoutProduct';
 
-import Image5 from '../assets/images/5.jpg';
-import Image4 from '../assets/images/4.jpg';
+import BagIconDark from '../assets/icons/bag-icon-dark.svg';
 
 const Container = styled.section`
   display: flex;
@@ -13,11 +12,37 @@ const Container = styled.section`
   border-bottom: 1px solid hsl(0,0%,90%);
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+  display: flex;
+  align-items: flex-end;
   margin-bottom: 1rem;
+`;
+
+const Icon = styled.img`
+  width: ${props => props.width || 'auto'};
+  height: ${props => props.height || 'auto'};
+  margin-right: .5rem;
+  vertical-align: middle;
+
+  :hover {
+    cursor: pointer;
+  };
+
+  @media (min-width: 1024px) {
+    width: 26px;
+    height: 26px;
+    margin-right: .75rem;
+  }
+`;
+
+const Heading = styled.h1`
   font-family: 'Betm Light';
   font-size: 1rem;
   color: hsl(0,0%,50%);
+  
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ProductsList = styled.ul`
@@ -29,7 +54,10 @@ const ProductsList = styled.ul`
 export const CheckoutProducts = (props) => {
   return (
     <Container>
-      <Title>Ma commande</Title>
+      <Title>
+        <Icon src={BagIconDark}></Icon>
+        <Heading>Ma commande</Heading>
+      </Title>
       <ProductsList>
         <CheckoutProduct></CheckoutProduct>
         <CheckoutProduct></CheckoutProduct>

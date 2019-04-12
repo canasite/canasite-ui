@@ -32,11 +32,16 @@ const FooterWrapper = styled.footer`
 `;
 
 const Description = styled.div`
-  dislay: flex;
-  flex-direction: column;
-  flex-basis: 25%;
   font-family: 'Betm Extralight';
   font-size: .75rem;
+  text-align: center;
+  padding: 1rem 0;
+
+  @media (min-width: 768px) {
+    flex-basis: 25%;
+    padding: 0;
+    text-align: left;
+  }
 `;
 
 const DescriptionParagraph = styled.p`
@@ -60,7 +65,7 @@ const ServicesColumn = styled.div`
 `;
 
 const ServicesTitle = styled.h4`
-  font-family: 'Betm Medium';
+  font-family: 'Betm Book';
   font-size: 1.25rem;
 `;
 
@@ -75,12 +80,11 @@ const ServicesItem = styled.li`
 `;
 
 const Contact = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 
   @media (min-width: 1024px) {
-    align-items: flex-start;
+    text-align: left;
+    flex-basis: 25%;
   }
 `;
 
@@ -89,7 +93,10 @@ const StayConnected = styled.h4`
   font-size: 1.25rem;
 `;
 
-const ContactForm = styled.form.attrs({ method: 'GET', action: '/' })`
+const ContactForm = styled.form.attrs({
+  method: 'GET',
+  action: '/' })`
+
   display: flex;
 `;
 
@@ -97,10 +104,20 @@ const EmailInput = styled.input.attrs({
   type: 'email',
   placeholder: 'Enter your email...'
   })`
+
+  flex-grow: 1;
+  padding: .5rem 1.5rem;
   border: none;
-  padding: .5rem;
   border-radius: 5px 0 0 5px;
   font-family: 'Betm Light';
+  font-size: 1rem;
+  line-height: 2rem;
+  color: #6BB592;
+
+  &::placeholder {
+    font-size: 1rem;
+    color: #6BB592;
+  }
 
   @media (min-width: 768px) {
     width: 250px;
@@ -111,10 +128,12 @@ const EmailInput = styled.input.attrs({
   }
 `;
 
-const EmailSubmitButton = styled.button.attrs({ type: 'submit' })`
+const EmailSubmitButton = styled.button.attrs({
+  type: 'submit'
+  })`
+
   padding: 0 .75rem;
   font-size: 1.5rem;
-  line-height: 1.5;
   border: none;
   border-radius: 0 5px 5px 0;
   color: white;
@@ -159,6 +178,9 @@ export const Footer = () => {
             </Services>
           </ServicesColumn>
         </ServicesContainer>
+        <Description>
+          <img src={Logo} alt="Logo"/>
+        </Description>
       </MobileBreakpoint>
 
       <TabletBreakpoint>
