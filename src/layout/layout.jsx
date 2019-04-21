@@ -2,16 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SectionContainer = styled.div`
-  width: auto;
-  padding-top: ${props => props.pTop || null};
-  padding-bottom: ${props => props.pBot || null};
-  padding-left: ${props => props.pLeft || null};
-  padding-right: ${props => props.pRight || null};
+  padding: 0 1rem;
   
   @media (min-width: 768px) {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 
   @media (min-width: 1024px) {

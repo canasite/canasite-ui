@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pose from 'react-pose';
 
 import CannabisIcon from '../assets/icons/cannabis-icon.svg';
 import SeedIcon from '../assets/icons/seed-icon.svg';
@@ -9,6 +10,42 @@ import AccountIcon from '../assets/icons/account-icon.svg';
 import SettingsIcon from '../assets/icons/settings-icon.svg';
 import HamburgerMenuClose from '../assets/icons/hamburger-menu-close.svg';
 
+const Contain = Pose.aside({
+  active: {
+    x: 0,
+    transition: {
+      duration: 100
+    }
+  },
+  exit: {
+    x: '-24rem',
+    transition: {
+      duration: 100
+    }
+  }
+});
+
+const Container = styled(Contain)`
+  z-index: 500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  padding: 2rem;
+  transform: ${props => props.isActive ? 'translateX(0)' : 'translateX(-18rem)'};
+  transition: transform .3s ease-out;
+  background-color: hsla(0,0%,97%,1);
+  
+  @media (min-width: 768px) {
+    width: 24rem;
+    transform: ${props => props.isActive ? 'translateX(0)' : 'translateX(-26rem)'}; 
+  }
+`;
+  
 const Icon = styled.img`
   width: ${props => props.width || 'auto'};
   height: ${props => props.height || 'auto'};
@@ -22,27 +59,6 @@ const Icon = styled.img`
   };
 `;
 
-const Container = styled.aside`
-  z-index: 500;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  width: 16rem;
-  height: 100vh;
-  padding: 2rem;
-  transform: ${props => props.isActive ? 'translateX(0px)' : 'translateX(-18rem)'};
-  transition: transform .3s ease-out;
-  background-color: hsla(0,0%,97%,1);
-  
-  @media (min-width: 768px) {
-    width: 24rem;
-    transform: ${props => props.isActive ? 'translateX(0px)' : 'translateX(-26rem)'}; 
-  }
-`;
-
 const SideListContainer = styled.div`
   flex-basis: 100%;
   display: flex;
@@ -54,11 +70,12 @@ const SideListContainer = styled.div`
 const SideNavList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin: 0 -2rem;
 `;
 
 const SideNavItem = styled.li`
   display: flex;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   font-family: 'Betm Light';
   font-size: 1.25rem;
   border-top: ${props => props.border ? '1px solid hsla(0,0%,0%,0.1)' : 'none'};
@@ -83,11 +100,11 @@ const CloseNavRow = styled.div`
 
 export const SideNavigation = (props) => {
   
-  let { isActive, handleShowSideNav } = props;
+  let { isActive, toggleSideNav } = props;
   return (
-    <Container isActive={isActive}>
+    <Container pose={isActive ? 'active' : 'exit' }>
       <CloseNavRow>
-        <Icon src={HamburgerMenuClose} alt="Close navigation" bColor={"#79CEA7"} padding={"1rem"} onClick={handleShowSideNav}></Icon>
+        <Icon src={HamburgerMenuClose} alt="Close navigation" bColor={"#79CEA7"} padding={"1rem"} onClick={toggleSideNav}></Icon>
       </CloseNavRow>
       <SideListContainer>
         <SideNavList>
@@ -133,4 +150,4 @@ export const SideNavigation = (props) => {
       </SideListContainer>
     </Container>
   );
-}
+};

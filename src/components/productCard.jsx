@@ -11,12 +11,13 @@ const ProductContainer = styled.li`
   flex-direction: column;
   align-items: center;
   flex-basis: 0;
-  padding: 0 .5rem;
+  padding: .5rem;
   text-align: center;
 `;
   
 const ThumbnailComponent = styled.img`
-  border-radius: 5px;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px hsla(0,0%,50%, 0.1), 0 3px 10px hsla(0,0%,50%, 0.1);
 `;
 
 const Thumbnail = Pose(ThumbnailComponent)({
@@ -62,7 +63,7 @@ const ProductCategory = styled.p`
   font-family: 'Betm Light';
   font-size: .85rem;
   color: hsl(0,0%,80%);
-  margin-bottom: .5rem;
+  margin-top: .5rem;
 `;
 
 export const ProductCard = (props) => {

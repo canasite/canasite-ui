@@ -12,7 +12,9 @@ const Container = styled.li`
   }
 
   @media (min-width: 768px) {
-    padding-bottom: 0;
+    &:not(:last-child) {
+      padding-bottom: 0;
+    }
   }
 `;
 

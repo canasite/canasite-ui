@@ -47,9 +47,10 @@ const ProductThumbnail = styled.a`
   display: block;
   min-height: 10rem;
   width: 10rem;
-  border-radius: 5px;
   background: ${props => `url(${props.image}) center no-repeat`};
   background-size: cover;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px hsla(0,0%,50%, 0.1), 0 3px 10px hsla(0,0%,50%, 0.1);
   
   &:hover {
     cursor: pointer;
@@ -61,6 +62,12 @@ export const AlsoLike = (props) => {
     <Container>
       <Title>Vous aimerez aussi</Title>
       <ProductsList>
+        <Product>
+          <ProductThumbnail image={Image4} alt="Plus de produits"></ProductThumbnail>
+        </Product>
+        <Product>
+          <ProductThumbnail image={Image4} alt="Plus de produits"></ProductThumbnail>
+        </Product>
         <Product>
           <ProductThumbnail image={Image4} alt="Plus de produits"></ProductThumbnail>
         </Product>

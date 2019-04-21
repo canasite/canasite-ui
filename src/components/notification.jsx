@@ -18,10 +18,10 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 2rem;
   color: white;
   background-color: #79CEA7;
-  border-radius: 5px;
+  border-radius: 1rem;
 `;
 
 const MainTextInfo = styled.p`

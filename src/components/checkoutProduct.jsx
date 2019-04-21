@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pose from 'react-pose';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 import Image5 from '../assets/images/5.jpg';
 import Image4 from '../assets/images/4.jpg';
 import CloseIcon from '../assets/icons/close-icon.svg';
-import { CheckoutAdress } from './checkoutAdress';
 
 const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .25rem 0;
+  padding: .5rem 0;
+
+  @media (min-width: 768px) {
+    padding: 1rem 0;
+  }
 `;
 
 const DescriptionColumn = styled.div`
@@ -67,13 +71,22 @@ const CurrencySymbol = styled.span`
   }
 `;
 
-const Close = styled.img`
-  &:hover {
-    cursor: pointer;
+const AnimatedClose = Pose.img({
+  hoverable: true,
+  init: {
+    scale: 0.75,
+    opacity: 0.5
+  },
+  hover: {
+    scale: 1,
+    opacity: 1
   }
+});
+
+const Close = styled(AnimatedClose)`
 `;
 
-export const CheckoutProduct = (props) => {
+export const CheckoutProduct = () => {
   return (
     <Container>
       <DescriptionColumn>

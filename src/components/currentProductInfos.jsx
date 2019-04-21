@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 
 import { RatingStars } from './ratingStars';
-import { Button } from './button';
-import { BagIncrease } from './bagIncrease';
+import { BagIncreaseContainer } from './bagIncreaseContainer';
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +15,7 @@ const Container = styled.div`
 `;
 
 const ProductName = styled.h1`
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   letter-spacing: -.075rem;
   color: hsl(0,0%,50%);
@@ -62,13 +61,13 @@ const IngredientItem = styled.li`
   }
 
   @media (min-width: 768px) {
-    padding: .25rem 1rem;
     font-size: 1em;
     line-height: 1.5rem;
   }
 `;
 
 const ProductDescription = styled.p`
+  padding: 1rem 0;
   margin-bottom: 1rem;
   font-family: 'Betm Light';
   font-size: 1rem;
@@ -108,30 +107,43 @@ const Cart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 1rem;
 
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 0;
 
-  > :first-child {
+    > :first-child {  
+      flex-grow: 1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    flex-wrap: nowrap;
+
+    > :first-child {
       margin-right: 2rem;
     }
   }
 `;
 
 export const CurrentProductInfos = (props) => {
+  let { productName, productPrice, handleAddToCart, handleCalculateTotalPrice } = props;
+
   return (
     <>
       <MobileBreakpoint>
         <Container>
-          <ProductName>{props.title}</ProductName>
+          <ProductName>{productName}</ProductName>
           <BelowProduct>
             <Rating>
               <StarLabel>Avis clients</StarLabel>
               <RatingStars></RatingStars>
             </Rating>
             <PriceContainer>
-              <Price>6</Price>
+              <Price>{productPrice}</Price>
               <PriceUnits>€/g</PriceUnits>
             </PriceContainer>
           </BelowProduct>
@@ -150,15 +162,14 @@ export const CurrentProductInfos = (props) => {
             La Bubble Gum CBD de chez est un cannabis Suisse à haut taux de CBD ayant un goût intense et aromatique. Ce cannabis est un produit de haute qualité contenant des valeurs de CBD entre 10-15% selon les récoltes.
           </ProductDescription>
           <Cart>
-            <BagIncrease></BagIncrease>
-            <Button>AJOUTER AU PANIER</Button>
+            <BagIncreaseContainer productPrice={productPrice} handleAddToCart={handleAddToCart}></BagIncreaseContainer>
           </Cart>
         </Container>
       </MobileBreakpoint>
 
       <TabletBreakpoint>
         <Container>
-          <ProductName>{props.title}</ProductName>
+          <ProductName>{productName}</ProductName>
           <IngredientsList>
             <IngredientItem>
               10-15% CBD
@@ -171,7 +182,7 @@ export const CurrentProductInfos = (props) => {
             </IngredientItem>
           </IngredientsList>
           <PriceContainer>
-            <Price>6</Price>
+            <Price>{productPrice}</Price>
             <PriceUnits>€/g</PriceUnits>
           </PriceContainer>
           <Rating>
@@ -182,15 +193,14 @@ export const CurrentProductInfos = (props) => {
             La Bubble Gum CBD de chez est un cannabis Suisse à haut taux de CBD ayant un goût intense et aromatique. Ce cannabis est un produit de haute qualité contenant des valeurs de CBD entre 10-15% selon les récoltes.
           </ProductDescription>
           <Cart>
-            <BagIncrease></BagIncrease>
-            <Button fontSize='1.25rem'>AJOUTER AU PANIER</Button>
+            <BagIncreaseContainer productPrice={productPrice} handleAddToCart={handleAddToCart}></BagIncreaseContainer>
           </Cart>
         </Container>
       </TabletBreakpoint>
 
       <DesktopBreakpoint>
         <Container>
-          <ProductName>{props.title}</ProductName>
+          <ProductName>{productName}</ProductName>
           <IngredientsList>
             <IngredientItem>
               10-15% CBD
@@ -203,7 +213,7 @@ export const CurrentProductInfos = (props) => {
             </IngredientItem>
           </IngredientsList>
           <PriceContainer>
-            <Price>6</Price>
+            <Price>{productPrice}</Price>
             <PriceUnits>€/g</PriceUnits>
           </PriceContainer>
           <Rating>
@@ -214,8 +224,7 @@ export const CurrentProductInfos = (props) => {
             La Bubble Gum CBD de chez est un cannabis Suisse à haut taux de CBD ayant un goût intense et aromatique. Ce cannabis est un produit de haute qualité contenant des valeurs de CBD entre 10-15% selon les récoltes.
           </ProductDescription>
           <Cart>
-            <BagIncrease></BagIncrease>
-            <Button fontSize='1.25rem'>AJOUTER AU PANIER</Button>
+            <BagIncreaseContainer productPrice={productPrice} handleAddToCart={handleAddToCart}></BagIncreaseContainer>
           </Cart>
         </Container>
       </DesktopBreakpoint>

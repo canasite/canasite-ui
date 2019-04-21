@@ -29,7 +29,7 @@ const MainImage = styled.div`
 
   @media (min-width: 768px) {
     margin: 0;
-    border-radius: 5px; 
+    border-radius: 1rem; 
   }
 `;
 
@@ -61,7 +61,7 @@ const SecondaryImageItem = styled.li`
 const SecondaryImage = styled.img`
   width: 75px;
   height: 75px;
-  border-radius: 5px;
+  border-radius: .5rem;
 
   &:hover {
     cursor: pointer;

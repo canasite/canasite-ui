@@ -4,6 +4,8 @@ import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout
 import { Container } from '../layout/layout';
 import { SettingsHeader } from '../components/settingsHeader';
 import { SettingsSections } from '../components/settingsSections';
+import { Header } from '../components/header';
+import { Footer } from '../components/footer';
 
 const CustomContainer = styled(Container)`
   @media (min-width: 768px) {
@@ -30,14 +32,18 @@ const Versioning = styled.p`
 
 export const SettingsPage = () => {
   return (
-    <CustomContainer>
-      <SettingsHeader></SettingsHeader>
-      <SettingsSections></SettingsSections>
-      <VersioningContainer>
-        <Versioning>
-          Version 0.01
-        </Versioning>
-      </VersioningContainer>
-    </CustomContainer>
+    <>
+      <CustomContainer>
+        <Header></Header>
+        <SettingsHeader></SettingsHeader>
+        <SettingsSections></SettingsSections>
+        <VersioningContainer>
+          <Versioning>
+            Version 0.01
+          </Versioning>
+        </VersioningContainer>
+      </CustomContainer>
+      <Footer></Footer>
+    </>
   );
 };

@@ -23,15 +23,10 @@ const Icon = styled.img`
 `;
 
 const Container = styled.aside`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1rem 2rem;
   margin: 1rem 0;
   transition: transform .3s ease-out;
   background-color: hsla(0,0%,97%,1);
-  border-radius: 5px;
+  border-radius: 1rem;
 `;
 
 const SideNavList = styled.ul`
@@ -41,7 +36,9 @@ const SideNavList = styled.ul`
 
 const SideNavItem = styled.li`
   display: flex;
-  padding: 1rem 4rem;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 2rem 3rem;
   font-family: 'Betm Light';
   font-size: 1.25rem;
   color: #79CEA7;
@@ -50,17 +47,10 @@ const SideNavItem = styled.li`
     border-right: 1px solid hsl(0,0%,90%);
   }
 
-  :hover {
+  &:hover {
     cursor: pointer;
+    background-color: hsl(0,0%,94%);
   };
-`;
-
-const IconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
 `;
 
 const SideNavItemLabel = styled.span`
@@ -76,27 +66,19 @@ export const SideNavigationDesktop = (props) => {
     <Container isActive={isActive}>
     <SideNavList>
       <SideNavItem>
-        <IconContainer>
-          <Icon src={CannabisIcon} alt="Cannabis"></Icon>
-        </IconContainer>
+        <Icon src={CannabisIcon} alt="Cannabis"></Icon>
         <SideNavItemLabel>Cannabis</SideNavItemLabel>
       </SideNavItem>
       <SideNavItem border>
-        <IconContainer>
-          <Icon src={SeedIcon} alt="Seeds"></Icon>
-        </IconContainer>
+        <Icon src={SeedIcon} alt="Seeds"></Icon>
         <SideNavItemLabel>Graines</SideNavItemLabel>
       </SideNavItem>
       <SideNavItem border>
-        <IconContainer>
-          <Icon src={PipeIcon} alt="Accessories"></Icon>
-        </IconContainer>
+        <Icon src={PipeIcon} alt="Accessories"></Icon>
         <SideNavItemLabel>Accessoires</SideNavItemLabel>
       </SideNavItem>
       <SideNavItem border>
-        <IconContainer>
-          <Icon src={OilIcon} alt="Oils"></Icon>
-        </IconContainer>
+        <Icon src={OilIcon} alt="Oils"></Icon>
         <SideNavItemLabel>Huiles</SideNavItemLabel>
       </SideNavItem>
     </SideNavList>

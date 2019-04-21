@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { AnimatedButton } from './button';
+import { Button } from './button';
 
-const Container = styled.form`
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Wrapper = styled.div`
   display: flex;
   margin-bottom: 1rem;
 
@@ -12,8 +18,10 @@ const Container = styled.form`
   }
 `;
 
-const BagValue = styled.input.attrs({ type: 'number'})`
+const BagValue = styled.input.attrs({ type: 'number' })`
   width: 100%;
+  min-width: 50px;
+  margin: 0;
   padding: 0 1rem;
   text-align: center;
   font-family: 'Betm Medium';
@@ -33,45 +41,46 @@ const BagValue = styled.input.attrs({ type: 'number'})`
   &:focus {
     outline: none;
   }
-
-  @media (min-width: 768px) {
-    width: 8rem;
-  }
-
 `;
 
-export class BagIncrease extends Component {
-  constructor(props) {
-    super(props);
-    this.increaseBag = this.increaseBag.bind(this);
-    this.decreaseBag = this.decreaseBag.bind(this);
-    this.state = {
-      currentBag: 0
-    };
+const CustomButton = styled(Button)`
+  @media (min-width: 768px) {
+    margin-top: 1rem;
+    flex-grow: 1;
   }
 
-  increaseBag(e) {
-    e.preventDefault();
-    this.setState(prevState => ({ currentBag: prevState.currentBag + 1}))
+  @media (min-width: 1024px) {
+    margin: 0;
   }
+`;
 
-  decreaseBag(e) {
-    e.preventDefault();
-    this.setState(prevState => { 
-      if (prevState.currentBag <= 0) return;
-      return {
-        currentBag: prevState.currentBag - 1
-      };
-    });
-  }
+const CompoundPriceLabel = styled.span`
+  margin-right: .5rem;
+  font-family: 'Betm Light';
+  font-size: .85rem;
+`;
 
-  render() {
-    return (
-      <Container>
-        <AnimatedButton fontSize='2rem' onClick={this.decreaseBag} style={{borderRadius: "5px 0 0 5px"}}>-</AnimatedButton>
-        <BagValue value={this.state.currentBag}></BagValue>
-        <AnimatedButton fontSize='2rem' onClick={this.increaseBag} style={{borderRadius: "0 5px 5px 0"}}>+</AnimatedButton>
-      </Container>
-    );
-  }
-}
+const CompoundPrice = styled.span`
+  padding: .5rem 0;
+  font-family: 'Betm Book';
+  font-size: 1.25rem;
+  color: hsl(0,0%,80%);
+`;
+
+export const BagIncrease = props => {
+  let { currentBag, handleIncreaseBag, handleDecreaseBag, handleAddToCart, handleSetBag, compoundPrice } = props;
+
+  return (
+    <FormContainer onSubmit={e => handleAddToCart(e, compoundPrice)}>
+      <CompoundPrice>
+        <CompoundPriceLabel>Prix cumulé:</CompoundPriceLabel>{compoundPrice}€
+      </CompoundPrice>
+      <Wrapper>
+        <AnimatedButton type="button" fontSize='2rem' onClick={handleDecreaseBag} style={{borderRadius: "5px 0 0 5px"}}>-</AnimatedButton>
+        <BagValue name="bag" value={currentBag} onChange={handleSetBag}></BagValue>
+        <AnimatedButton type="button" fontSize='2rem' onClick={handleIncreaseBag} style={{borderRadius: "0 5px 5px 0"}}>+</AnimatedButton>
+      </Wrapper>
+      <CustomButton type="submit" fontSize='1.25rem'>AJOUTER AU PANIER</CustomButton>
+    </FormContainer>
+  );
+};

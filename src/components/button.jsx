@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Pose from 'react-pose';
 
 const StyledButton = styled.button`
-  margin: ${props => props.margin || null};
+  margin: ${props => props.margin || '0'};
   padding: .75rem 1.25rem;
-  border: none;
-  border-radius: 5px;
+  border: ${props => props.border || 'none'};
   font-family: 'Betm Book';
   font-size: ${props => props.fontSize || '1rem'};
+  border-radius: .5rem;
   background-color: ${props => props.backgroundColor || '#79CEA7'};
   color: ${props => props.color || 'white'};
 

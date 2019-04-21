@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import Pose from 'react-pose';
+
 import SortIcon from '../assets/icons/SortIcon.svg';
 import MoreActionsIcon from '../assets/icons/MoreActionsIcon.svg';
 import { MobileBreakpoint, TabletBreakpoint,DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
+import { PopOverMenu } from './popOverMenu';
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin-bottom: 1rem;
+  margin-left: -2rem;
+  margin-right: -2rem;
   box-shadow: 0 3px 6px -15px rgba(0,0,0,0.16), 0 3px 6px -4px rgba(0,0,0,0.23);
 
-  @media (min-width: 768px) {
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
-
   @media (min-width: 1024px) {
-    padding: 1rem;
     box-shadow: none;
   }
 `;
 
-const TitleColumn = styled.h2`
+const TitleColumn = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const Title = styled.h2`
   font-size: 1.5rem;
   letter-spacing: -.05rem;
   color: #79CEA7;
@@ -36,48 +38,120 @@ const TitleColumn = styled.h2`
 `;
 
 const SettingsColumn = styled.div`
-  
+  position: relative;
 `;
+
+const PressedIcon = Pose.div({
+  pressable: true,
+  init: {
+    backgroundColor: 'transparent',
+    height: 25
+  },
+  press: {
+    backgroundColor: 'hsl(0,0%,0%)',
+    height: 75
+  }
+});
 
 const Icon = styled.img`
   width: ${props => props.width || 'auto'};
   height: ${props => props.height || 'auto'};
   margin-right: ${props => props.mRight || 0};
-  padding-top: ${props => props.pTop || 0};
-  padding-bottom: ${props => props.pBot || 0};
-  padding-left: ${props => props.pLeft || 0};
-  padding-right: ${props => props.pRight || 0};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-export const ProductRowHeader = ({ title, iconSrc }) => {
-  return (
-    <Container>
-      <TitleColumn>
+export class ProductRowHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.showSortingPopover = this.showSortingPopover.bind(this);
+    this.showMoreActionsPopover = this.showMoreActionsPopover.bind(this);
+    this.state = {
+      isSortingPopoverActive: false,
+      isMoreActionPopoverActive: false
+    };
+  }
+
+  showSortingPopover() {
+    this.setState(prevState => {
+      if (prevState.isMoreActionPopoverActive) {
+        return {
+          isMoreActionPopoverActive: !prevState.isMoreActionPopoverActive,
+          isSortingPopoverActive: !prevState.isSortingPopoverActive
+        }
+      } else {
+        return {
+          isSortingPopoverActive: !prevState.isSortingPopoverActive
+        }
+      }
+    });
+  }
+
+  showMoreActionsPopover() {
+    this.setState(prevState => {
+      if (prevState.isSortingPopoverActive) {
+        return {
+          isSortingPopoverActive: !prevState.isSortingPopoverActive,
+          isMoreActionPopoverActive: !prevState.isMoreActionPopoverActive
+        }
+      } else {
+        return {
+          isMoreActionPopoverActive: !prevState.isMoreActionPopoverActive
+        }
+      }
+    });
+  }
+
+  render() {
+
+    let { title, iconSrc, onStart, onEnd } = this.props;
+    return (
+      <Container>
+  
         <MobileBreakpoint>
-          <Icon src={iconSrc} width="1.5rem" mRight={"1rem"}></Icon>
+          <TitleColumn>
+            <Icon src={iconSrc} width="1.5rem" mRight={"1rem"}></Icon>
+            <Title>{title}</Title>
+          </TitleColumn>
+          <SettingsColumn>
+            <PressedIcon onPressStart={onStart}>
+              <Icon src={SortIcon} mRight={"2rem"} onClick={this.showSortingPopover}></Icon>
+              <PopOverMenu isActive={this.state.isSortingPopoverActive} headerText={"Trier par :"}></PopOverMenu>
+              <Icon src={MoreActionsIcon} mRight={"1rem"} onClick={this.showMoreActionsPopover}></Icon>
+              <PopOverMenu isActive={this.state.isMoreActionPopoverActive} headerText={"Plus d'actions"}></PopOverMenu>
+            </PressedIcon>
+          </SettingsColumn>
         </MobileBreakpoint>
+  
         <TabletBreakpoint>
-          <Icon src={iconSrc} width="2rem" mRight={"1rem"}></Icon>
+          <TitleColumn>
+            <Icon src={iconSrc} width="2rem" mRight={"1rem"}></Icon>
+            <Title>{title}</Title>
+          </TitleColumn>
+          <SettingsColumn>
+            <Icon src={SortIcon} mRight={"1rem"} onClick={this.showSortingPopover}></Icon>
+            <PopOverMenu isActive={this.state.isSortingPopoverActive} headerText={"Trier par :"}></PopOverMenu>
+            <Icon src={MoreActionsIcon} onClick={this.showMoreActionsPopover}></Icon>
+            <PopOverMenu isActive={this.state.isMoreActionPopoverActive} headerText={"Plus d'actions"}></PopOverMenu>
+          </SettingsColumn>
         </TabletBreakpoint>
+  
         <DesktopBreakpoint>
-          <Icon src={iconSrc} width="2rem" mRight={"1rem"}></Icon>
+          <TitleColumn>
+            <Icon src={iconSrc} width="2rem" mRight={"1rem"}></Icon>
+            <Title>{title}</Title>
+          </TitleColumn>
+          <SettingsColumn>
+            <Icon src={SortIcon} mRight={"1rem"} onClick={this.showSortingPopover}></Icon>
+            <PopOverMenu isActive={this.state.isSortingPopoverActive} headerText={"Trier par :"}></PopOverMenu>
+            <Icon src={MoreActionsIcon} onClick={this.showMoreActionsPopover}></Icon>
+            <PopOverMenu isActive={this.state.isMoreActionPopoverActive} headerText={"Plus d'actions"}></PopOverMenu>
+          </SettingsColumn>
         </DesktopBreakpoint>
-        {title}
-      </TitleColumn>
-      <SettingsColumn>
-        <MobileBreakpoint>
-          <Icon src={SortIcon} mRight={"1rem"}></Icon>
-          <Icon src={MoreActionsIcon}></Icon>
-        </MobileBreakpoint>
-        <TabletBreakpoint>
-          <Icon src={SortIcon} mRight={"1rem"}></Icon>
-          <Icon src={MoreActionsIcon}></Icon>
-        </TabletBreakpoint>
-        <DesktopBreakpoint>
-          <Icon src={SortIcon} mRight={"1rem"}></Icon>
-          <Icon src={MoreActionsIcon}></Icon>
-        </DesktopBreakpoint>
-      </SettingsColumn>
-    </Container>
-  );
+  
+      </Container>
+    );
+  }
 }

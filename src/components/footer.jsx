@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 
-import Logo from '../assets/icons/logo.svg';
+import SVGLogo from '../assets/icons/logo.svg';
 
 const FooterContainer = styled.section`
   display: flex;
@@ -22,12 +22,19 @@ const FooterContainer = styled.section`
 `;
 
 const FooterWrapper = styled.footer`
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
   color: white;
   background-color: #79CEA7;
 
   @media (min-width: 768px) {
     padding: 3rem;
+  }
+`;
+
+const Logo = styled.img`
+
+  @media (min-width: 1024px) {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -37,7 +44,7 @@ const Description = styled.div`
   text-align: center;
   padding: 1rem 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     flex-basis: 25%;
     padding: 0;
     text-align: left;
@@ -51,10 +58,9 @@ const DescriptionParagraph = styled.p`
 const ServicesContainer = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding-top: 3rem;
 
   @media (min-width: 1024px) {
-    padding-top: 0;
+    margin-top: 0;
   }
 `;
 
@@ -81,16 +87,23 @@ const ServicesItem = styled.li`
 
 const Contact = styled.div`
   text-align: center;
-
+  margin-bottom: 4rem;
+  
   @media (min-width: 1024px) {
+    margin-bottom: 0;
     text-align: left;
     flex-basis: 25%;
   }
 `;
 
 const StayConnected = styled.h4`
-  margin-bottom: .75rem;
-  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+
+  @media (min-width: 1024px) {
+    margin-bottom: .5rem;
+    font-size: 1.25rem;
+  }
 `;
 
 const ContactForm = styled.form.attrs({
@@ -132,7 +145,7 @@ const EmailSubmitButton = styled.button.attrs({
   type: 'submit'
   })`
 
-  padding: 0 .75rem;
+  padding: 0 1.25rem;
   font-size: 1.5rem;
   border: none;
   border-radius: 0 5px 5px 0;
@@ -179,7 +192,7 @@ export const Footer = () => {
           </ServicesColumn>
         </ServicesContainer>
         <Description>
-          <img src={Logo} alt="Logo"/>
+          <Logo src={SVGLogo} alt="Logo"></Logo>
         </Description>
       </MobileBreakpoint>
 
@@ -217,13 +230,16 @@ export const Footer = () => {
             </Services>
           </ServicesColumn>
         </ServicesContainer>
+        <Description>
+          <Logo src={SVGLogo} alt="Logo"></Logo>
+        </Description>
       </TabletBreakpoint>
 
       <DesktopBreakpoint>
         <FooterContainer>
           <Description>
-            <img src={Logo} alt="Logo"/>
-            <DescriptionParagraph>Le Vendeur est éditeur de Produits et Services de XXX à destination de consommateurs.</DescriptionParagraph>
+            <Logo src={SVGLogo} alt="Logo"></Logo>
+            <DescriptionParagraph>Le Vendeur est éditeur de Produits et Services de Canasite à destination de consommateurs.</DescriptionParagraph>
           </Description>
           <ServicesContainer>
             <ServicesColumn>

@@ -33,7 +33,7 @@ const TextContainer = styled.div`
 `;
 
 const Setting = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: hsl(0,0%,50%);
   margin-bottom: .15rem;
   

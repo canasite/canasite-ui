@@ -5,7 +5,7 @@ import CommentsIcon from '../assets/icons/comments-icon.svg';
 import { Comment } from './comment';
 
 const Container = styled.section`
-  padding: 1rem 0;
+  padding: 2rem 0;
   border-top: 1px solid hsl(0,0%,90%);
 `;
 
@@ -64,7 +64,7 @@ export class CommentsSection extends Component {
           <HeaderTitle>Ce qu'en pensent nos clients</HeaderTitle>
         </Header>
         <CommentsContainer>
-          {this.state.comments.map(comment => <Comment {...comment}></Comment>)}
+          {this.state.comments.map((comment, i) => <Comment {...comment} key={i}></Comment>)}
         </CommentsContainer>
       </Container>
     );

@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
 
 import { Container } from '../layout/layout';
-import { ArianeWire } from '../components/arianeWire';
+import { Breadcrumb } from '../components/breadcrumb';
 import { CurrentProductImage } from '../components/currentProductImage';
-import { CurrentProductInfos } from '../components/currentProductInfos';
+import CurrentProductInfosContainer from '../components/currentProductInfosContainer';
 import { CommentsSection } from '../components/commentsSection';
 import { AlsoLike } from '../components/alsoLike';
+import { Header } from '../components/header';
+import { Footer } from '../components/footer';
 
 const ProductWrapper = styled.section`
   margin-top: 5rem;
@@ -44,24 +46,26 @@ const ProductInfos = styled.div`
 export const ProductPage = (props) => {
   return (
     <>
+      <Header></Header>
       <MobileBreakpoint>
         <ProductWrapper>
-          <ArianeWire label="Cannabis"></ArianeWire>
+          <Breadcrumb label="Cannabis"></Breadcrumb>
           <ProductInfos>
             <CurrentProductImage></CurrentProductImage>
-            <CurrentProductInfos title="CBD Bubble Gum"></CurrentProductInfos>
+            <CurrentProductInfosContainer title="CBD Bubble Gum"></CurrentProductInfosContainer>
           </ProductInfos>
           <CommentsSection></CommentsSection>
+          <AlsoLike></AlsoLike>
         </ProductWrapper>
       </MobileBreakpoint>
 
       <TabletBreakpoint>
         <Container>
           <ProductWrapper>
-            <ArianeWire label="Cannabis"></ArianeWire>
+            <Breadcrumb label="Cannabis"></Breadcrumb>
             <ProductInfos>
               <CurrentProductImage></CurrentProductImage>
-              <CurrentProductInfos title="CBD Bubble Gum"></CurrentProductInfos>
+              <CurrentProductInfosContainer title="CBD Bubble Gum"></CurrentProductInfosContainer>
             </ProductInfos>
             <CommentsSection></CommentsSection>
             <AlsoLike></AlsoLike>
@@ -72,16 +76,17 @@ export const ProductPage = (props) => {
       <DesktopBreakpoint>
         <Container>
           <ProductWrapper>
-            <ArianeWire label="Cannabis"></ArianeWire>
+            <Breadcrumb label="Cannabis"></Breadcrumb>
             <ProductInfos>
               <CurrentProductImage></CurrentProductImage>
-              <CurrentProductInfos title="CBD Bubble Gum"></CurrentProductInfos>
+              <CurrentProductInfosContainer title="CBD Bubble Gum"></CurrentProductInfosContainer>
             </ProductInfos>
             <CommentsSection></CommentsSection>
             <AlsoLike></AlsoLike>
           </ProductWrapper>
         </Container>
       </DesktopBreakpoint>
+      <Footer></Footer>
     </>
   );
 };

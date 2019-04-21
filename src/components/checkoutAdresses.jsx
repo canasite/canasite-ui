@@ -8,7 +8,7 @@ import AdressIconDark from '../assets/icons/adress-icon-dark.svg';
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 2rem 0;
   border-bottom: 1px solid hsl(0,0%,90%);
 `;
 
@@ -48,6 +48,11 @@ const Heading = styled.h1`
 const Adresses = styled.form`
   display: flex;
   flex-direction: column;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 export class CheckoutAdresses extends Component {

@@ -46,13 +46,13 @@ const Label = styled.span`
   }
 `;
 
-const ArianeWireComponent = ({ label, history }) => {
+const BreadcrumbComponent = ({ label, history }) => {
   return (
-    <Container >
-      <AnimatedIcon src={BackIcon} alt="Retour" onClick={history.goBack}></AnimatedIcon>
+    <Container onClick={history.goBack}>
+      <AnimatedIcon src={BackIcon} alt="Retour"></AnimatedIcon>
       <Label>{label}</Label>
     </Container>
   );
 };
 
-export const ArianeWire = withRouter(ArianeWireComponent)
+export const Breadcrumb = withRouter(BreadcrumbComponent);
