@@ -1,13 +1,14 @@
-import React, { Component }                                                   from 'react';
+import React, { Component }                                            from 'react';
 
-import { Carousel, ShippingPromo, ProductsSection, Header, Footer }            from '../components/index';
+import { Carousel, ShippingPromo, ProductsSection, Footer }            from '../components/index';
+import { HeaderContainer }                                             from '../containers/index';
 
 
 class Home extends Component {
   render() {
     return (
       <>
-        <Header></Header>
+        <HeaderContainer></HeaderContainer>
         <Carousel></Carousel>
         <ShippingPromo></ShippingPromo>
         <ProductsSection></ProductsSection>

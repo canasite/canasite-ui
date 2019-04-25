@@ -1,8 +1,8 @@
 import React, { Component }         from 'react';
 import { connect }                  from 'react-redux';
 
-import { addToCart }                from '../../redux/actions/action-creators';
-import { CurrentProductInfos }      from '../index';
+import { addToCart }                from '../redux/actions/action-creators';
+import { CurrentProductInfos }      from '../components/index';
 
 
 class CurrentProductInfosContainer extends Component {
@@ -25,7 +25,7 @@ class CurrentProductInfosContainer extends Component {
     await this.setState(prevState => ({ selectedQuantity, compoundPrice }));
     this.props.addToCart(this.state);
   }
-
+  
   render() {
     let { productName, productPrice, productLabel } = this.state;
     return (

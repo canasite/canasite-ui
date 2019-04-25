@@ -3,7 +3,8 @@ import styled                                                                   
 
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                        from '../layout/responsive-utilites/responsive-wrappers';
 import { Container }                                                                                    from '../layout/layout';
-import { Breadcrumb, CheckoutAdresses, CheckoutProducts, CheckoutTotal, CheckoutCta, Header }           from '../components/index';
+import { Breadcrumb, CheckoutAdresses, CheckoutProducts, CheckoutTotal, CheckoutCta }           from '../components/index';
+import { HeaderContainer }                                                                              from '../containers';
 import products                                                                                         from '../mock-products/products';
 
 
@@ -36,7 +37,7 @@ const TabletCta = styled(CheckoutCta)`
 const CheckoutPage = () => {
   return (
     <>
-      <Header></Header>
+      <HeaderContainer></HeaderContainer>
       <MobileBreakpoint>
         <CustomContainer>
           <Breadcrumb label='Retour'></Breadcrumb>

@@ -2,7 +2,6 @@ import { AlsoLike } from './CurrentProduct/alsoLike';
 import { Button } from './Utilities/button';
 import { AnimatedButton } from './Utilities/button';
 import { BagIncrease } from './CurrentProduct/bagIncrease';
-import { BagIncreaseContainer } from './CurrentProduct/bagIncreaseContainer';
 import { Breadcrumb } from './Utilities/breadcrumb';
 import { Carousel } from './Utilities/carousel';
 import { CheckoutAdress } from './Checkout/checkoutAdress';
@@ -15,17 +14,13 @@ import { Comment } from './Comments/comment';
 import { CommentsSection } from './Comments/commentsSection';
 import { CurrentProductImage } from './CurrentProduct/currentProductImage';
 import { CurrentProductInfos } from './CurrentProduct/currentProductInfos';
-import CurrentProductInfosContainer from './CurrentProduct/currentProductInfosContainer';
 import { Footer } from './Footer/footer';
 import { Header } from './Header/header';
-import HeaderContainer from './Header/headerContainer';
 import { LoginForm } from './Login/loginForm';
-import LoginFormContainer from './Login/loginFormContainer';
 import { LoginSection } from './Login/loginSection';
 import { MoreButton } from './Utilities/moreButton';
 import { ShippingPromo } from './Utilities/shippingPromo';
 import { PopOverCart } from './Popover/popOverCart';
-import PopOverCartContainer from './Popover/popOverCartContainer';
 import { PopOverCartItem } from './Popover/popOverCartItem';
 import { PopOverItem } from './Popover/popOverItem';
 import { PopOverMenu } from './Popover/popOverMenu';
@@ -49,7 +44,6 @@ export {
   Button,
   AnimatedButton,
   BagIncrease,
-  BagIncreaseContainer,
   Breadcrumb,
   Carousel,
   CheckoutAdress,
@@ -62,17 +56,13 @@ export {
   CommentsSection,
   CurrentProductImage,
   CurrentProductInfos,
-  CurrentProductInfosContainer,
   Footer,
   Header,
-  HeaderContainer,
   LoginForm,
-  LoginFormContainer,
   LoginSection,
   MoreButton,
   ShippingPromo,
   PopOverCart,
-  PopOverCartContainer,
   PopOverCartItem,
   PopOverItem,
   PopOverMenu,

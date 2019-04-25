@@ -2,7 +2,8 @@ import React                                                          from 'reac
 import styled                                                         from 'styled-components';
 
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }      from '../../layout/responsive-utilites/responsive-wrappers';
-import { BagIncreaseContainer, RatingStars }                          from '../index';
+import { RatingStars }                                                from '../index';
+import { BagIncreaseContainer }                                       from '../../containers/index';
 
 
 const Container = styled.div`
@@ -137,7 +138,7 @@ const CurrentProductInfos = (props) => {
           <BelowProduct>
             <Rating>
               <StarLabel>Avis clients</StarLabel>
-              <RatingStars></RatingStars>
+              <RatingStars clickable={true}></RatingStars>
             </Rating>
             <PriceContainer>
               <Price>{productPrice}</Price>
@@ -184,7 +185,7 @@ const CurrentProductInfos = (props) => {
           </PriceContainer>
           <Rating>
             <StarLabel>Avis clients</StarLabel>
-            <RatingStars></RatingStars>
+            <RatingStars clickable={true}></RatingStars>
           </Rating>
           <ProductDescription>
             La Bubble Gum CBD de chez est un cannabis Suisse à haut taux de CBD ayant un goût intense et aromatique. Ce cannabis est un produit de haute qualité contenant des valeurs de CBD entre 10-15% selon les récoltes.
@@ -215,7 +216,7 @@ const CurrentProductInfos = (props) => {
           </PriceContainer>
           <Rating>
             <StarLabel>Avis clients</StarLabel>
-            <RatingStars></RatingStars>
+            <RatingStars clickable={true}></RatingStars>
           </Rating>
           <ProductDescription>
             La Bubble Gum CBD de chez est un cannabis Suisse à haut taux de CBD ayant un goût intense et aromatique. Ce cannabis est un produit de haute qualité contenant des valeurs de CBD entre 10-15% selon les récoltes.

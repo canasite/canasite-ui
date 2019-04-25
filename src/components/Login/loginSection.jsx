@@ -2,7 +2,7 @@ import React                                                          from 'reac
 import styled                                                         from 'styled-components';
 
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }      from '../../layout/responsive-utilites/responsive-wrappers';
-import { LoginFormContainer }                                                  from '../index';
+import { LoginFormContainer }                                         from '../../containers/index';
 import LoginIllustration                                              from '../../assets/images/login-illustration2.svg';
 
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Header } from '../index';
+import { Header } from '../components/index';
 
 
-function mapStateToProps({ cartItemsCounter }) {
+const mapStateToProps = ({ cartItemsCounter }) => {
   return {
     cartItemsCounter
   }

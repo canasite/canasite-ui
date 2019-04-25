@@ -1,9 +1,10 @@
-import React                                                                                                              from 'react';
-import styled                                                                                                             from 'styled-components';
-import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                                          from '../layout/responsive-utilites/responsive-wrappers';
+import React                                                                                          from 'react';
+import styled                                                                                         from 'styled-components';
+import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                      from '../layout/responsive-utilites/responsive-wrappers';
 
-import { Container }                                                                                                      from '../layout/layout';
-import { Breadcrumb, CurrentProductImage, CurrentProductInfosContainer, CommentsSection, AlsoLike, Header, Footer }       from '../components/index';
+import { Container }                                                                                  from '../layout/layout';
+import { Breadcrumb, CurrentProductImage, CommentsSection, AlsoLike, Footer }                         from '../components/index';
+import { CurrentProductInfosContainer, HeaderContainer }                                              from '../containers/index';
 
 
 const ProductWrapper = styled.section`
@@ -42,7 +43,7 @@ const ProductInfos = styled.section`
 const ProductPage = (props) => {
   return (
     <>
-      <Header></Header>
+      <HeaderContainer></HeaderContainer>
       <MobileBreakpoint>
         <ProductWrapper>
           <Breadcrumb label="Cannabis"></Breadcrumb>

@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
 
   &:hover {
-    cursor: pointer;
+    cursor: ${props => props.clickable ? 'pointer' : 'initial'};
   }
 `;
 
@@ -19,8 +19,10 @@ const Star = styled.img`
 
 
 const RatingStars = (props) => {
+  let { clickable } = props;
+  
   return (
-    <Container>
+    <Container clickable={clickable}>
       <Star src={StarFilled}></Star>
       <Star src={StarFilled}></Star>
       <Star src={StarFilled}></Star>

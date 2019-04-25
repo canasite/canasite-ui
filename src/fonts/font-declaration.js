@@ -1,10 +1,10 @@
 import { css }        from 'styled-components';
 
-import ExtraLight     from './BetmExtralight.woff2';
-import Light          from './BetmLight.woff2';
-import Book           from './BetmBook.woff2';
-import Medium         from './BetmMedium.woff2';
-import Bold           from './BetmBold.woff2';
+import ExtraLight     from './Typeface/BetmExtralight.woff2';
+import Light          from './Typeface/BetmLight.woff2';
+import Book           from './Typeface/BetmBook.woff2';
+import Medium         from './Typeface/BetmMedium.woff2';
+import Bold           from './Typeface/BetmBold.woff2';
 
 
 const FontsDeclaration = css`

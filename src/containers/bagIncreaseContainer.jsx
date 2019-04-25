@@ -1,6 +1,6 @@
 import React, { Component }   from 'react';
 
-import { BagIncrease }        from '../index';
+import { BagIncrease }        from '../components/index';
 
 
 class BagIncreaseContainer extends Component {
@@ -71,4 +71,4 @@ class BagIncreaseContainer extends Component {
   }
 }
 
-export { BagIncreaseContainer };
+export default BagIncreaseContainer;

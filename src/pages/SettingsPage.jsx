@@ -2,7 +2,8 @@ import React                                                        from 'react'
 import styled                                                       from 'styled-components';
 
 import { Container }                                                from '../layout/layout';
-import { SettingsHeader, SettingsSections, Header, Footer }         from '../components/index';
+import { SettingsHeader, SettingsSections, Footer }                 from '../components/index';
+import { HeaderContainer }                                          from '../containers';
 
 
 const CustomContainer = styled(Container)`
@@ -33,7 +34,7 @@ const SettingsPage = () => {
   return (
     <>
       <CustomContainer>
-        <Header></Header>
+        <HeaderContainer></HeaderContainer>
         <SettingsHeader></SettingsHeader>
         <SettingsSections></SettingsSections>
         <VersioningContainer>

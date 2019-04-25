@@ -2,8 +2,8 @@ import React, { Component }       from 'react';
 import { connect }                from 'react-redux';
 import { Redirect }               from 'react-router-dom';
 
-import { login }                  from '../../redux/actions/action-creators';
-import { LoginForm }              from '../index';
+import { login }                  from '../redux/actions/action-creators';
+import { LoginForm }              from '../components/index';
 
 
 const mapStateToProps = state => {

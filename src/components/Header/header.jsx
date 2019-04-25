@@ -3,7 +3,8 @@ import styled                                                         from 'styl
 import { Link }                                                       from 'react-router-dom';
 
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }      from '../../layout/responsive-utilites/responsive-wrappers';
-import { SearchBar, PopOverCartContainer, SideNavigation }            from '../index';
+import { SearchBar, SideNavigation }                                  from '../index';
+import { PopOverCartContainer }                                       from '../../containers/index';
 import Logo                                                           from '../../assets/icons/logo.svg';
 import HamburgerMenu                                                  from '../../assets/icons/hamburger-menu.svg';
 import SearchIcon                                                     from '../../assets/icons/search-icon.svg';
