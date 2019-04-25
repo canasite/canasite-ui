@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { GlobalStyles } from './styles/global-styles';
+import React, { Component }                                               from 'react';
+import { Provider }                                                       from 'react-redux';
+import { store }                                                          from './redux/store';
+import { BrowserRouter as Router, Route, Switch }                         from "react-router-dom";
+import { GlobalStyles }                                                   from './styles/global-styles';
 
-import ScrollTop from './components/scrollTop';
-import { Home } from './pages/Home';
-import { ProductPage } from './pages/ProductPage';
-import { Header } from './components/header';
-import { SideNavigation } from './components/sideNavigation';
-import { Footer } from './components/footer';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { SettingsPage } from './pages/SettingsPage';
-import { LoginPage } from './pages/LoginPage';
+import { ScrollTop }                                                      from './components/index.js';
+import { Home, ProductPage, CheckoutPage, SettingsPage, LoginPage }       from './pages/index';
 
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
 
 class App extends Component {
   render() {

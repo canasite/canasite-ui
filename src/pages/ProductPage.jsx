@@ -1,15 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
+import React                                                                                                              from 'react';
+import styled                                                                                                             from 'styled-components';
+import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                                          from '../layout/responsive-utilites/responsive-wrappers';
 
-import { Container } from '../layout/layout';
-import { Breadcrumb } from '../components/breadcrumb';
-import { CurrentProductImage } from '../components/currentProductImage';
-import CurrentProductInfosContainer from '../components/currentProductInfosContainer';
-import { CommentsSection } from '../components/commentsSection';
-import { AlsoLike } from '../components/alsoLike';
-import { Header } from '../components/header';
-import { Footer } from '../components/footer';
+import { Container }                                                                                                      from '../layout/layout';
+import { Breadcrumb, CurrentProductImage, CurrentProductInfosContainer, CommentsSection, AlsoLike, Header, Footer }       from '../components/index';
+
 
 const ProductWrapper = styled.section`
   margin-top: 5rem;
@@ -30,7 +25,7 @@ const ProductWrapper = styled.section`
   }
 `;
 
-const ProductInfos = styled.div`
+const ProductInfos = styled.section`
   display: flex;
   flex-direction: column;
   padding-top: 1rem;
@@ -43,7 +38,8 @@ const ProductInfos = styled.div`
   }
 `;
 
-export const ProductPage = (props) => {
+
+const ProductPage = (props) => {
   return (
     <>
       <Header></Header>
@@ -90,3 +86,5 @@ export const ProductPage = (props) => {
     </>
   );
 };
+
+export { ProductPage };

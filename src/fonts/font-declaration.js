@@ -1,11 +1,13 @@
-import { css } from 'styled-components';
-import ExtraLight from './BetmExtralight.woff2';
-import Light from './BetmLight.woff2';
-import Book from './BetmBook.woff2';
-import Medium from './BetmMedium.woff2';
-import Bold from './BetmBold.woff2';
+import { css }        from 'styled-components';
 
-export const FontsDeclaration = css`
+import ExtraLight     from './BetmExtralight.woff2';
+import Light          from './BetmLight.woff2';
+import Book           from './BetmBook.woff2';
+import Medium         from './BetmMedium.woff2';
+import Bold           from './BetmBold.woff2';
+
+
+const FontsDeclaration = css`
   @font-face {
     font-family: 'Betm Extralight';
     font-weight: 300;
@@ -36,3 +38,5 @@ export const FontsDeclaration = css`
     src: url(${Bold}) format('woff2');
   };
 `;
+
+export { FontsDeclaration };

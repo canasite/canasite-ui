@@ -2,10 +2,11 @@ const initialState = {
   showSpinner: false,
   isLoggedIn: false,
   currentUser: {},
-  currentCart: []
+  currentCart: [],
+  cartItemsCounter: 0
 };
 
-export const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN': {
       return {
@@ -19,7 +20,16 @@ export const appReducer = (state = initialState, action) => {
     case 'ADD_TO_CART': {
       return {
         ...state,
-        currentCart: [...state.currentCart, action.payload]
+        currentCart: [...state.currentCart, action.payload],
+        cartItemsCounter: state.cartItemsCounter + 1
+      }
+    }
+
+    case 'REMOVE_FROM_CART': {
+      return {
+        ...state,
+        currentCart: state.currentCart.filter(cartItem => cartItem.productId !== action.payload.productId),
+        cartItemsCounter: state.cartItemsCounter - 1
       }
     }
 
@@ -27,3 +37,5 @@ export const appReducer = (state = initialState, action) => {
       return state
   }
 };
+
+export { appReducer };

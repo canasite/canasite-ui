@@ -1,8 +1,9 @@
-import reset from 'react-style-reset/string';
-import { FontsDeclaration } from '../fonts/font-declaration';
-import { createGlobalStyle } from 'styled-components';
+import reset                      from 'react-style-reset/string';
+import { FontsDeclaration }       from '../fonts/font-declaration';
+import { createGlobalStyle }      from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+
+const GlobalStyles = createGlobalStyle`
   ${reset};
   ${FontsDeclaration};
 
@@ -46,3 +47,5 @@ export const GlobalStyles = createGlobalStyle`
       -moz-appearance:textfield;
   }
 `;
+
+export { GlobalStyles };

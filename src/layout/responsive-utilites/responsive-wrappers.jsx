@@ -1,8 +1,9 @@
-import React from 'react';
-import MediaQuery from 'react-responsive';
-import { breakpoints } from './breakpoints';
+import React              from 'react';
+import MediaQuery         from 'react-responsive';
+import { breakpoints }    from './breakpoints';
 
-export const MobileBreakpoint = ({ children }) => {
+
+const MobileBreakpoint = ({ children }) => {
   return (
     <MediaQuery query={breakpoints.mobile}>
       {matches => {
@@ -13,7 +14,7 @@ export const MobileBreakpoint = ({ children }) => {
     </MediaQuery>
   );
 }
-export const TabletBreakpoint = ({ children }) => {
+const TabletBreakpoint = ({ children }) => {
   return (
     <MediaQuery query={breakpoints.tablet}>
       {matches => {
@@ -25,7 +26,7 @@ export const TabletBreakpoint = ({ children }) => {
   );
 }
 
-export const DesktopBreakpoint = ({ children }) => {
+const DesktopBreakpoint = ({ children }) => {
   return (
     <MediaQuery query={breakpoints.desktop}>
       {matches => {
@@ -36,3 +37,9 @@ export const DesktopBreakpoint = ({ children }) => {
     </MediaQuery>
   );
 }
+
+export {
+  MobileBreakpoint,
+  TabletBreakpoint,
+  DesktopBreakpoint
+};

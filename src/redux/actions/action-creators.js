@@ -1,16 +1,29 @@
-import { LOGIN } from './actions-types';
-import { ADD_TO_CART } from './actions-types';
+import {
+  LOGIN,
+  ADD_TO_CART,
+  REMOVE_FROM_CART
+} from './actions-types';
 
-export const login = payload => {
+
+const login = payload => {
   return {
     type: LOGIN,
     payload
   }
 };
 
-export const addToCart = payload => {
+const addToCart = payload => {
   return {
     type: ADD_TO_CART,
     payload
   }
 };
+
+const removeFromCart = payload => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload
+  }
+};
+
+export { login, addToCart, removeFromCart };

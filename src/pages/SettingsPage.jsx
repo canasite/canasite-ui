@@ -1,11 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
-import { Container } from '../layout/layout';
-import { SettingsHeader } from '../components/settingsHeader';
-import { SettingsSections } from '../components/settingsSections';
-import { Header } from '../components/header';
-import { Footer } from '../components/footer';
+import React                                                        from 'react';
+import styled                                                       from 'styled-components';
+
+import { Container }                                                from '../layout/layout';
+import { SettingsHeader, SettingsSections, Header, Footer }         from '../components/index';
+
 
 const CustomContainer = styled(Container)`
   @media (min-width: 768px) {
@@ -30,7 +28,8 @@ const Versioning = styled.p`
   color: hsl(0,0%,75%);
 `;
 
-export const SettingsPage = () => {
+
+const SettingsPage = () => {
   return (
     <>
       <CustomContainer>
@@ -47,3 +46,5 @@ export const SettingsPage = () => {
     </>
   );
 };
+
+export { SettingsPage };

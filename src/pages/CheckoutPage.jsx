@@ -1,14 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../layout/responsive-utilites/responsive-wrappers';
-import { CheckoutAdresses } from '../components/checkoutAdresses';
-import { Container } from '../layout/layout';
-import { Breadcrumb } from '../components/breadcrumb';
-import { CheckoutProducts } from '../components/checkoutProducts';
-import { CheckoutTotal } from '../components/checkoutTotal';
-import { CheckoutCta } from '../components/checkoutCta';
-import { Header } from '../components/header';
-import { Footer } from '../components/footer';
+import React                                                                                            from 'react';
+import styled                                                                                           from 'styled-components';
+
+import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                        from '../layout/responsive-utilites/responsive-wrappers';
+import { Container }                                                                                    from '../layout/layout';
+import { Breadcrumb, CheckoutAdresses, CheckoutProducts, CheckoutTotal, CheckoutCta, Header }           from '../components/index';
+import products                                                                                         from '../mock-products/products';
+
 
 const CustomContainer = styled(Container)`
   margin-top: 4rem;
@@ -35,14 +32,15 @@ const TabletCta = styled(CheckoutCta)`
   padding: 2rem;
 `;
 
-export const CheckoutPage = () => {
+
+const CheckoutPage = () => {
   return (
     <>
       <Header></Header>
       <MobileBreakpoint>
         <CustomContainer>
           <Breadcrumb label='Retour'></Breadcrumb>
-          <CheckoutProducts></CheckoutProducts>
+          <CheckoutProducts products={products}></CheckoutProducts>
           <CheckoutAdresses></CheckoutAdresses>
           <CheckoutTotal></CheckoutTotal>
           <CheckoutCta></CheckoutCta>
@@ -52,7 +50,7 @@ export const CheckoutPage = () => {
       <TabletBreakpoint>
         <CustomContainer>
           <Breadcrumb label='Retour'></Breadcrumb>
-          <CheckoutProducts></CheckoutProducts>
+          <CheckoutProducts products={products}></CheckoutProducts>
           <CheckoutAdresses></CheckoutAdresses>
           <TabletCtaSection>
             <TabletTotal></TabletTotal>
@@ -64,7 +62,7 @@ export const CheckoutPage = () => {
       <DesktopBreakpoint>
         <CustomContainer>
           <Breadcrumb label='Retour'></Breadcrumb>
-          <CheckoutProducts></CheckoutProducts>
+          <CheckoutProducts products={products}></CheckoutProducts>
           <CheckoutAdresses></CheckoutAdresses>
           <CheckoutTotal></CheckoutTotal>
           <CheckoutCta></CheckoutCta>
@@ -73,3 +71,5 @@ export const CheckoutPage = () => {
     </>
   );
 };
+
+export { CheckoutPage };

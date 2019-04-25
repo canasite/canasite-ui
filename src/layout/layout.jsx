@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React    from 'react';
+import styled   from 'styled-components';
+
 
 const SectionContainer = styled.div`
   padding: 0 1rem;
@@ -20,7 +21,8 @@ const FullContainer = styled.div`
   width: 100%;
 `;
 
-export const Container = ({ children, ...props }) => {
+
+const Container = ({ children, ...props }) => {
   return (
     <SectionContainer {...props}>
       {children}
@@ -28,10 +30,15 @@ export const Container = ({ children, ...props }) => {
   );
 };
 
-export const FluidContainer = ({ children, ...props }) => {
+const FluidContainer = ({ children, ...props }) => {
   return (
     <FullContainer {...props}>
       {children}
     </FullContainer>
   );
+};
+
+export {
+  Container,
+  FluidContainer
 };
