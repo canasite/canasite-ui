@@ -97,7 +97,10 @@ const Illustration = styled.img`
 `;
 
 
-const PopOverCart = ({ isActive, handleToggle, currentCart, removeFromCart }) => {
+const PopOverCart = (props) => {
+
+  const { isActive, handleToggle, currentCart, removeFromCart } = props;
+  
   return (
     <StyledContainer pose={ isActive ? 'enter' : 'exit' }>
       <Header>Mon panier</Header>

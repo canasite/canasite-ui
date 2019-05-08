@@ -22,10 +22,11 @@ class CurrentProductInfosContainer extends Component {
   async handleAddToCart(event, compoundPrice) {
     event.preventDefault();
     const selectedQuantity = parseInt(event.currentTarget.bag.value);
+    if (!selectedQuantity) return false;
     await this.setState(prevState => ({ selectedQuantity, compoundPrice }));
     this.props.addToCart(this.state);
   }
-  
+
   render() {
     let { productName, productPrice, productLabel } = this.state;
     return (

@@ -4,7 +4,7 @@ import styled                                                                   
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                              from '../../layout/responsive-utilites/responsive-wrappers';
 import { Container }                                                                          from '../../layout/layout';
 import { ProductRowHeader, ProductRow, SideNavigationDesktop, ProductCard, MoreButton }       from '../index';
-import Products                                                                               from '../../mock-products/products';
+import Products                                                                               from '../../assets/mock-products/products';
 import TopSalesIcon                                                                           from '../../assets/icons/topSalesIcon.svg';
 import NewProductsIcon                                                                        from '../../assets/icons/newProductsIcon.svg';
 

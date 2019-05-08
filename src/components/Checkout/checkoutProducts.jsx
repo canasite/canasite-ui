@@ -1,25 +1,19 @@
-import React                                                      from 'react';
-import styled                                                     from 'styled-components';
+import React                                                                                    from 'react';
+import styled                                                                                   from 'styled-components';
 
-import { CheckoutProduct }                                        from '../index';
-import BagIconDark                                                from '../../assets/icons/bag-icon-dark.svg';
+import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }                                from '../../layout/responsive-utilites/responsive-wrappers';
+import { Container as LayoutContainer }                                                         from '../../layout/layout';
+import { CheckoutProduct, CheckoutAdresses, Breadcrumb, CheckoutTotal, CheckoutCta }            from '../index';
+import BagIconDark                                                                              from '../../assets/icons/bag-icon-dark.svg';
+import EmptyCartIllustration                                                                              from '../../assets/images/empty-list.png';
 
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 0;
-  border-bottom: 1px solid hsl(0,0%,90%);
-
-  @media (min-width: 768px) {
-    padding: 2rem 0;
-  }
-`;
 
 const Title = styled.div`
   display: flex;
   align-items: flex-end;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(0,0%,90%);
 `;
 
 const Icon = styled.img`
@@ -52,26 +46,104 @@ const Heading = styled.h1`
 const ProductsList = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+`;
+
+const StyledCheckoutProduct = styled(CheckoutProduct)`
+  background-color: ${props => props.isPair % 2 !== 0 ? 'hsl(0,0%,98%)' : 'transparent'};
+  border-radius: ${props => props.isPair % 2 !== 0 ? '5px' : 'initial'};
+`;
+
+const Container = styled(LayoutContainer)`
+  margin-top: 4rem;
 
   @media (min-width: 768px) {
-    padding: 0 2rem;
+    margin-top: 6rem;
+    padding-bottom: 4rem;
   }
 `;
 
+const TabletCtaSection = styled.section`
+  display: flex;
+`;
 
-const CheckoutProducts = ({ products }) => {
-  return (
-    <Container>
-      <Title>
-        <Icon src={BagIconDark}></Icon>
-        <Heading>Ma commande</Heading>
-      </Title>
-      <ProductsList>
-        { products.map((product, i) => <CheckoutProduct {...product} key={i}></CheckoutProduct>) }
-      </ProductsList>
-    </Container>
-  );
+const TabletTotal = styled(CheckoutTotal)`
+  flex-basis: 50%;
+  border: none;
+`;
+
+const TabletCta = styled(CheckoutCta)`
+  flex-basis: 50%;
+  padding: 2rem;
+`;
+
+const NoCart = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 10rem);
+`;
+
+const NoCartMessage = styled.h1`
+  font-size: 1.5rem;
+  color: hsl(0,0%,50%);
+`;
+
+const NoCartIllustration = styled.img`
+  max-width: 10rem;
+  margin: 2rem;
+`;
+
+const CheckoutProducts = ({ currentCart, removeFromCart }) => {
+
+  if (currentCart.length) {
+    return (
+      <Container>
+        <Breadcrumb label='Retour'></Breadcrumb>
+        <Title>
+          <Icon src={BagIconDark}></Icon>
+          <Heading>Ma commande</Heading>
+        </Title>
+        <ProductsList>
+          { currentCart.map((product, i) => <StyledCheckoutProduct {...product} removeFromCart={removeFromCart} key={i} isPair={i}></StyledCheckoutProduct>) }
+        </ProductsList>
+
+        <MobileBreakpoint>
+          <CheckoutAdresses></CheckoutAdresses>
+          <CheckoutTotal></CheckoutTotal>
+          <CheckoutCta></CheckoutCta>
+        </MobileBreakpoint>
+        <TabletBreakpoint>
+  
+          <CheckoutAdresses></CheckoutAdresses>
+          <TabletCtaSection>
+            <TabletTotal></TabletTotal>
+            <TabletCta></TabletCta>
+          </TabletCtaSection>
+        </TabletBreakpoint>
+  
+        <DesktopBreakpoint>
+          <CheckoutAdresses></CheckoutAdresses>
+          <CheckoutTotal></CheckoutTotal>
+          <CheckoutCta></CheckoutCta>
+        </DesktopBreakpoint>
+        
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <Breadcrumb label='Retour'></Breadcrumb>
+        <NoCart>
+          <NoCartIllustration src={EmptyCartIllustration}></NoCartIllustration>
+          <NoCartMessage>
+            Votre panier est vide !
+          </NoCartMessage>
+        </NoCart>
+      </Container>
+    );
+  }
+
 };
 
 export { CheckoutProducts };

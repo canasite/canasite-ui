@@ -3,8 +3,7 @@ import styled                                                         from 'styl
 import { Link }                                                       from 'react-router-dom';
 
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint }      from '../../layout/responsive-utilites/responsive-wrappers';
-import { SearchBar, SideNavigation }                                  from '../index';
-import { PopOverCartContainer }                                       from '../../containers/index';
+import { SearchBar, SideNavigation, PopOverCart }                     from '../index';
 import Logo                                                           from '../../assets/icons/logo.svg';
 import HamburgerMenu                                                  from '../../assets/icons/hamburger-menu.svg';
 import SearchIcon                                                     from '../../assets/icons/search-icon.svg';
@@ -30,13 +29,13 @@ const StyledHeader = styled.header`
   }
 `;
 
-const SideBar = styled.ul`
+const HeaderItems = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const SideBarItem = styled.li`
+const HeaderItem = styled.li`
   position: relative;
   display: flex;
   align-items: center;
@@ -96,62 +95,64 @@ const NotificationBubble = styled.div`
 
 
 const Header = (props) => {
+
+  let {
+    isLoggedIn,
+    sideNavActive,
+    searchBarActive,
+    popOverCardActive,
+    toggleSideNav,
+    toggleSearchBar,
+    togglePopOverCart,
+    currentCart,
+    cartItemsCounter,
+    removeFromCart
+  } = props;
+
   return (
     <>
-      <SideNavigation isActive={props.sideNavActive} toggleSideNav={props.toggleSideNav}></SideNavigation>
+      <SideNavigation isActive={sideNavActive} toggleSideNav={toggleSideNav} isLoggedIn={isLoggedIn}></SideNavigation>
       <MobileBreakpoint>
         <StyledHeader>
-          { !props.searchBarActive &&
-            <>
-              <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={props.toggleSideNav}></Icon>
-              <Link to="/">
-                <Icon src={Logo} alt="Logo" width="72px"></Icon>
-              </Link>
-              <SideBar>
-                <SideBarItem>
-                  { !props.searchBarActive &&
-                    <Icon src={SearchIcon} alt="Rechercher des produits" width="24px" onClick={props.toggleSearchBar}></Icon>
-                  }
-                </SideBarItem>
-                <SideBarItem>
-                  { !props.searchBarActive &&
-                    <Icon src={BagIcon} alt="Votre panier" width="20px" onClick={props.togglePopOverCart}></Icon>
-                  }
-                  {
-                    props.cartItemsCounter > 0 &&
-                    <NotificationBubble>{props.cartItemsCounter}</NotificationBubble>
-                  }
-                  <PopOverCartContainer isActive={props.popOverCardActive} handleToggle={props.togglePopOverCart}></PopOverCartContainer>
-                </SideBarItem>
-              </SideBar>
-            </>
-          }
-          <SearchBar isActive={props.searchBarActive} handleClose={props.toggleSearchBar}></SearchBar>
+            { !searchBarActive &&
+              <>
+                <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={toggleSideNav}></Icon>
+                <Link to="/">
+                  <Icon src={Logo} alt="Logo" width="72px"></Icon>
+                </Link>
+                <HeaderItems>
+                  <HeaderItem>
+                    <Icon src={SearchIcon} alt="Rechercher des produits" width="24px" onClick={toggleSearchBar}></Icon>
+                  </HeaderItem>
+                  <HeaderItem>
+                    <Icon src={BagIcon} alt="Votre panier" width="20px" onClick={togglePopOverCart}></Icon>
+                    { cartItemsCounter > 0 && <NotificationBubble>{cartItemsCounter}</NotificationBubble> }
+                    <PopOverCart isActive={popOverCardActive} currentCart={currentCart} handleToggle={togglePopOverCart} removeFromCart={removeFromCart}></PopOverCart>
+                  </HeaderItem>
+                </HeaderItems>
+              </>
+            }
+          <SearchBar isActive={searchBarActive} handleClose={toggleSearchBar}></SearchBar>
         </StyledHeader>
       </MobileBreakpoint>
 
       <TabletBreakpoint>
         <StyledHeader>
-          <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={props.toggleSideNav}></Icon>
+          <Icon src={HamburgerMenu} alt="Menu" width="24px" onClick={toggleSideNav}></Icon>
           <Link to="/">
             <Icon src={Logo} alt="Logo"></Icon>
           </Link>
-          <SideBar>
-            <SideBarItem>
-              { !props.searchBarActive &&
-                <Icon src={SearchIcon} alt="Rechercher des produits" width="28px" onClick={props.toggleSearchBar}></Icon>
-              }
-              <SearchBar isActive={props.searchBarActive} handleClose={props.toggleSearchBar}></SearchBar>
-            </SideBarItem>
-            <SideBarItem>
-              <Icon src={BagIcon} alt="Votre panier" width="24px" onClick={props.togglePopOverCart}></Icon>
-              <PopOverCartContainer isActive={props.popOverCardActive} handleToggle={props.togglePopOverCart}></PopOverCartContainer>
-              {
-                props.cartItemsCounter > 0 &&
-                <NotificationBubble>{props.cartItemsCounter}</NotificationBubble>
-              }
-            </SideBarItem>
-          </SideBar>
+          <HeaderItems>
+            <HeaderItem>
+              { !searchBarActive && <Icon src={SearchIcon} alt="Rechercher des produits" width="28px" onClick={toggleSearchBar}></Icon> }
+              <SearchBar isActive={searchBarActive} handleClose={toggleSearchBar}></SearchBar>
+            </HeaderItem>
+            <HeaderItem>
+              <Icon src={BagIcon} alt="Votre panier" width="24px" onClick={togglePopOverCart}></Icon>
+              <PopOverCart isActive={popOverCardActive} currentCart={currentCart} handleToggle={togglePopOverCart} removeFromCart={removeFromCart}></PopOverCart>
+              { cartItemsCounter > 0 && <NotificationBubble>{cartItemsCounter}</NotificationBubble> }
+            </HeaderItem>
+          </HeaderItems>
         </StyledHeader>
       </TabletBreakpoint>
 
@@ -160,28 +161,33 @@ const Header = (props) => {
           <Link to="/">
             <Icon src={Logo} alt="Logo"></Icon>
           </Link>
-          <SideBar>
-            <SideBarItem>
-              <Link to="/login">Créer un compte</Link>
-            </SideBarItem>
-            <SideBarItem>
-              <Link to="/login">Se connecter</Link>
-            </SideBarItem>
-            <SideBarItem>
-              { !props.searchBarActive &&
-                <Icon src={SearchIcon} alt="Rechercher des produits" width="28px" onClick={props.toggleSearchBar}></Icon>
-              }
-              <SearchBar isActive={props.searchBarActive} handleClose={props.toggleSearchBar}></SearchBar>
-            </SideBarItem>
-            <SideBarItem>
-              <Icon src={BagIcon} alt="Votre panier" width="24px" onClick={props.togglePopOverCart}></Icon>
-              <PopOverCartContainer isActive={props.popOverCardActive} handleToggle={props.togglePopOverCart}></PopOverCartContainer>
-              {
-                props.cartItemsCounter > 0 &&
-                <NotificationBubble>{props.cartItemsCounter}</NotificationBubble>
-              }
-            </SideBarItem>
-          </SideBar>
+          <HeaderItems>
+            { !isLoggedIn &&
+              <>
+                <HeaderItem>
+                  <Link to="/login">Créer un compte</Link>
+                </HeaderItem>
+                <HeaderItem>
+                  <Link to="/checkout">Se connecter</Link>
+                </HeaderItem>
+              </>
+              ||
+              <>
+                <HeaderItem>
+                <Link to="/settings">Mon Compte</Link>
+                </HeaderItem>
+              </>
+            }
+            <HeaderItem>
+              { !searchBarActive && <Icon src={SearchIcon} alt="Rechercher des produits" width="28px" onClick={toggleSearchBar}></Icon> }
+              <SearchBar isActive={searchBarActive} handleClose={toggleSearchBar}></SearchBar>
+            </HeaderItem>
+            <HeaderItem>
+              <Icon src={BagIcon} alt="Votre panier" width="24px" onClick={togglePopOverCart}></Icon>
+              <PopOverCart isActive={popOverCardActive} currentCart={currentCart} handleToggle={togglePopOverCart} removeFromCart={removeFromCart}></PopOverCart>
+              { cartItemsCounter > 0 && <NotificationBubble>{cartItemsCounter}</NotificationBubble> }
+            </HeaderItem>
+          </HeaderItems>
         </StyledHeader>
       </DesktopBreakpoint>
     </>

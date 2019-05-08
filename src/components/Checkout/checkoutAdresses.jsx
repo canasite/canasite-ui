@@ -33,6 +33,8 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(0,0%,90%);
 `;
 
 const Heading = styled.h1`
@@ -45,14 +47,10 @@ const Heading = styled.h1`
   }
 `;
 
-const Adresses = styled.form`
+const AdressesForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
-
-  @media (min-width: 768px) {
-    padding: 0 2rem;
-  }
 `;
 
 
@@ -61,28 +59,45 @@ class CheckoutAdresses extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      selectedAdress: 'Maison'
+      selectedAdressIndex: 0,
+      adresses: [
+        {
+          place: 'Maison', 
+          street: '58 rue de Perche',
+          city: '75015 Paris'
+        },
+        {
+          place: 'Travail', 
+          street: '47 avenue du Nil',
+          city: '92024 Courbevoie'
+        },
+        {
+          place: 'Zouz', 
+          street: '62 rue de Perche',
+          city: '75015 Paris'
+        }
+      ]
     };
   }
 
-  handleChange(event) {
-    const newAdress = event.target.value;
-    this.setState(prevState => ({ selectedAdress: newAdress }));
-    console.log(this.state);
+  handleChange(e, index) {
+    const newIndex = index;
+    this.setState(prevState => ({ selectedAdressIndex: newIndex }));
   }
 
   render() {
+
+    const { adresses } = this.state;
+
     return (
       <Container>
         <Title>
           <Icon src={AdressIconDark} width={"16px"}></Icon>
           <Heading>Mes adresses</Heading>
         </Title>
-        <Adresses>
-          <CheckoutAdress label="Maison" isSelected={this.state.selectedAdress === "Maison"} handleChange={this.handleChange}></CheckoutAdress>
-          <CheckoutAdress label="Home"  isSelected={this.state.selectedAdress === "Home"} handleChange={this.handleChange}></CheckoutAdress>
-          <CheckoutAdress label="Zouz"  isSelected={this.state.selectedAdress === "Zouz"} handleChange={this.handleChange}></CheckoutAdress>
-        </Adresses>
+        <AdressesForm>
+          { adresses.map((adress, i) => <CheckoutAdress {...adress} index={i} selectedAdressIndex={this.state.selectedAdressIndex} handleChange={this.handleChange} key={i}></CheckoutAdress>) }
+        </AdressesForm>
       </Container>
     );
   }

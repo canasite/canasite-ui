@@ -1,6 +1,7 @@
-import reset                      from 'react-style-reset/string';
-import { FontsDeclaration }       from '../fonts/font-declaration';
 import { createGlobalStyle }      from 'styled-components';
+import reset                      from 'react-style-reset/string';
+
+import { FontsDeclaration }       from './font-declaration';
 
 
 const GlobalStyles = createGlobalStyle`

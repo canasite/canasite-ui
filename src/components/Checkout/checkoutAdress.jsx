@@ -7,6 +7,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
+  border-radius: ${props => props.isSelected ? '5px' : 0};
+  background-color: ${props => props.isSelected ? 'hsla(152, 46%, 64%, 0.1)' : 'transparent'};
 
   @media (min-width: 1024px) {
     height: 4rem;
@@ -77,14 +80,16 @@ const AdressDetail = styled.p`
 
 
 const CheckoutAdress = (props) => {
-  let { label, isSelected, handleChange } = props;
+  let { place, street, city, index, selectedAdressIndex, handleChange } = props;
+  const isSelected = index === selectedAdressIndex;
+
   return (
-    <Container>
-      <Label {...props}>
-        <Radio checked={isSelected} value={label} onChange={handleChange}/>
-        {label}
+    <Container isSelected={isSelected} onClick={e => handleChange(e, index)}>
+      <Label isSelected={isSelected}>
+        <Radio checked={isSelected} value={place} onChange={e => handleChange(e, index)}/>
+        {place}
       </Label>
-      <AdressDetail {...props}>58 rue de Perche<br/> 75015 Paris </AdressDetail>
+      <AdressDetail isSelected={isSelected}>{street}<br/>{city}</AdressDetail>
     </Container>
   );
 };

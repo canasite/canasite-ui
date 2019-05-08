@@ -6,7 +6,6 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border-bottom: 1px solid hsl(0,0%,90%);
 
   @media (min-width: 768px) {
     padding: 2rem;

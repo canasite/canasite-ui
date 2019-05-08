@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Header } from '../components/index';
+import { removeFromCart } from '../redux/actions/action-creators.js';
 
 
-const mapStateToProps = ({ cartItemsCounter }) => {
+const mapStateToProps = ({ currentCart, cartItemsCounter, isLoggedIn }) => {
   return {
-    cartItemsCounter
+    currentCart,
+    cartItemsCounter,
+    isLoggedIn
   }
 };
 
+const mapDispatchToProps = {
+  removeFromCart
+};
 
 class HeaderContainer extends Component {
   constructor(props) {
@@ -50,5 +56,5 @@ class HeaderContainer extends Component {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(HeaderContainer)

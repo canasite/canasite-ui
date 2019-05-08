@@ -22,7 +22,7 @@ const addToCart = payload => {
 const removeFromCart = payload => {
   return {
     type: REMOVE_FROM_CART,
-    payload
+    productId: payload
   }
 };
 

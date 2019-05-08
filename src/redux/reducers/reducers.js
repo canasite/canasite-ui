@@ -28,7 +28,7 @@ const appReducer = (state = initialState, action) => {
     case 'REMOVE_FROM_CART': {
       return {
         ...state,
-        currentCart: state.currentCart.filter(cartItem => cartItem.productId !== action.payload.productId),
+        currentCart: state.currentCart.filter(cartItem => cartItem.productId !== action.productId),
         cartItemsCounter: state.cartItemsCounter - 1
       }
     }

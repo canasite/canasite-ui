@@ -9,10 +9,10 @@ const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5rem 0;
+  padding: .5rem;
 
   @media (min-width: 768px) {
-    padding: 1rem 0;
+    padding: 1rem;
   }
 `;
 
@@ -86,22 +86,25 @@ const Close = styled(AnimatedClose)`
 `;
 
 
-const CheckoutProduct = ({ productName, productPrice, productThumbnail }) => {
+const CheckoutProduct = (props) => {
+
+  let { productName, productId, productThumbnail, selectedQuantity, compoundPrice, removeFromCart, className } = props;
+  
   return (
-    <Container>
+    <Container className={className}>
       <DescriptionColumn>
         <Thumbnail src={productThumbnail} alt="Selected product"></Thumbnail>
         <ProductDetails>
           <ProductName>{productName}</ProductName>
-          <ProductQuantity>5g</ProductQuantity>
+          <ProductQuantity>{selectedQuantity}g</ProductQuantity>
         </ProductDetails>
       </DescriptionColumn>
       <ProductPrice>
         <PriceTag>
-          30
+          {compoundPrice}
           <CurrencySymbol>€</CurrencySymbol>
           </PriceTag>
-        <Close src={CloseIcon}></Close>
+        <Close src={CloseIcon} onClick={e => removeFromCart(productId)}></Close>
       </ProductPrice>
     </Container>
   );

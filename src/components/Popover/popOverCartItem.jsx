@@ -70,7 +70,7 @@ const PopOverCartItem = (props) => {
         </ProductDetails>
         <TotalPrice>{compoundPrice}€</TotalPrice>
       </Item>
-      <Close src={CloseIcon} onClick={e => removeFromCart({ productId })}></Close>
+      <Close src={CloseIcon} onClick={e => removeFromCart(productId)}></Close>
     </Container>
   );
 };
