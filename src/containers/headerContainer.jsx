@@ -5,7 +5,9 @@ import { Header } from '../components/index';
 import { removeFromCart } from '../redux/actions/action-creators.js';
 
 
-const mapStateToProps = ({ currentCart, cartItemsCounter, isLoggedIn }) => {
+const mapStateToProps = ({ cartReducer, authentificationReducer }) => {
+  const { currentCart, cartItemsCounter } = cartReducer;
+  const { isLoggedIn } = authentificationReducer;
   return {
     currentCart,
     cartItemsCounter,

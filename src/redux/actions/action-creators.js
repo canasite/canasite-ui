@@ -1,16 +1,8 @@
 import {
-  LOGIN,
   ADD_TO_CART,
   REMOVE_FROM_CART
 } from './actions-types';
 
-
-const login = payload => {
-  return {
-    type: LOGIN,
-    payload
-  }
-};
 
 const addToCart = payload => {
   return {
@@ -26,4 +18,8 @@ const removeFromCart = payload => {
   }
 };
 
-export { login, addToCart, removeFromCart };
+
+export {
+  addToCart,
+  removeFromCart
+};

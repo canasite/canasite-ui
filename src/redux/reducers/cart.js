@@ -1,21 +1,10 @@
 const initialState = {
-  showSpinner: false,
-  isLoggedIn: false,
-  currentUser: {},
   currentCart: [],
   cartItemsCounter: 0
 };
 
-const appReducer = (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN': {
-      return {
-        ...state,
-        isLoggedIn: true,
-        showSpinner: true,
-        currentUser: action.payload
-      }
-    }
 
     case 'ADD_TO_CART': {
       return {
@@ -38,4 +27,4 @@ const appReducer = (state = initialState, action) => {
   }
 };
 
-export { appReducer };
+export { cartReducer };

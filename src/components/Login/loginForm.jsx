@@ -4,30 +4,32 @@ import styled                  from 'styled-components';
 import { Button, Spinner }     from '../index';
 
 
-const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+const Container = styled.div`
 `;
 
-const InputLabel = styled.label`
-  margin-bottom: 1.5rem;
+const FormContainer = styled.form`
+`;
 
-  > p {
-    margin-bottom: .5rem;
-  }
+const FormField = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const Label = styled.label`
+  display: inline-block;
+  margin-bottom: .5rem;
 `;
 
 const EmailInput = styled.input.attrs(props => ({
   type: 'email',
-  placeholder: props.placeholder
+  placeholder: props.placeholder,
+  autoComplete: 'true'
 }))`
   display: block;
   min-width: 300px;
+  width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  border: ${props => props.hasErrors && props.errorType === 'e-mail' ? '1px solid red' : 'none' };
+  border: ${props => props.hasError && props.errorType === 'e-mail' ? '1px solid red' : 'none' };
   background-color: hsl(0,0%,95%);
   font-family: 'Betm Book';
   font-size: 1.15rem;
@@ -50,43 +52,34 @@ const EmailInput = styled.input.attrs(props => ({
 const PasswordInput = styled(EmailInput).attrs(props => ({
   type: 'password'
 }))`
-  border: ${props => props.hasErrors && props.errorType === 'mot de passe' ? '1px solid red' : 'none' };
-`;
 
-const CtaSection = styled.div`
-  width: 100%;
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
+  border: ${props => props.hasError && props.errorType === 'mot de passe' ? '1px solid red' : 'none' };
 `;
 
 const StyledButton = styled(Button)`
+  display: block;
   width: 100%;
-  margin: ${props => props.margin || 0};
 `;
 
 const Lost = styled.a`
-  display: inline-block;
-  align-self: flex-start;
+  display: block;
   margin-top: -.75rem;
   margin-bottom: 2rem;
   text-decoration: underline;
   font-size: .8rem;
   letter-spacing: 0.015rem;
   color: #79CEA7;
-  
+
   &:hover {
     cursor: pointer;
     text-decoration: underline;
   }
 `;
 
-const ErrorMessage = styled.span`
+const ErrorMessage = styled.p`
   width: 100%;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
   color: red;
   background-color: hsl(0, 50%, 90%);
@@ -101,10 +94,48 @@ const SpinnerContainer = styled.section`
   width: 18.75rem;
 `;
 
+const FormSelector = styled.div`
+  margin-bottom: 2rem;
+`;
 
-const LoginForm = (props) => {
+const FormOption  = styled.span`
+  display: inline-block;
+  padding: .75rem 0;
+  color: ${props => props.currentForm ? 'inherit' : 'grey'};
+  border-bottom: ${props => props.currentForm ? '2px solid #79CEA7' : 'none'};
 
-  const { hasErrors, errorType, handleSubmit, showSpinner } = props;
+  &:first-child {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Condition = styled.label`
+  display: flex;
+  align-items: flex-start;
+  max-width: 18rem;
+  margin-bottom: .5rem;
+`;
+
+const ConditionText = styled.span`
+  font-size: .85rem;
+  color: hsla(0,0%,0%,0.25);
+`;
+
+const CheckBox = styled.input.attrs({
+  type: 'checkbox'
+})`
+  margin-right: .5rem;
+  margin-top: 0;
+`;
+
+
+const LoginForm = props => {
+
+  const { hasError, errorMessage, errors, handleLoginSubmit, handleRegisterSubmit, handleChangeForm, currentForm, showSpinner } = props;
 
   if (showSpinner) {
     return (
@@ -114,25 +145,74 @@ const LoginForm = (props) => {
     );
   } else {
     return (
-      <FormContainer onSubmit={e => handleSubmit(e)}>
-        <InputLabel>
-          <p>E-mail</p>
-          <EmailInput {...props} name="email" placeholder='Veuillez entrer votre e-mail'></EmailInput>
-        </InputLabel>
-        <InputLabel>
-          <p>Mot de passe</p>
-          <PasswordInput {...props} name="password" placeholder='Veuillez entrer votre mot de passe'></PasswordInput>
-        </InputLabel>
-        <Lost>Mot de passe oublié ?</Lost>
-        { hasErrors && <ErrorMessage>Il y a une erreur! <br/> Veuillez fournir un {errorType} valide!</ErrorMessage>}
-        { showSpinner && <Spinner></Spinner> }
-        <CtaSection>
-          <Buttons>
-            <StyledButton margin={"0 1rem 0 0"} backgroundColor={'hsl(0,0%,85%)'}>Créer un compte</StyledButton>
+      <Container>
+        <FormSelector>
+          <FormOption currentForm={currentForm === 'login'} onClick={e => handleChangeForm('login')}>Se connecter</FormOption>
+          <FormOption currentForm={currentForm === 'register'} onClick={e =>  handleChangeForm('register')}>Créer un compte</FormOption>
+        </FormSelector>
+
+        { currentForm === 'login' &&
+          <FormContainer onSubmit={e => handleLoginSubmit(e)}>
+            <FormField>
+              <Label>E-mail</Label>
+              { errors.email && <ErrorMessage>{ errors.email }</ErrorMessage> }
+              <EmailInput {...props} name="email" placeholder='Veuillez entrer votre e-mail'></EmailInput>
+            </FormField>
+            <FormField>
+              <Label>Mot de passe</Label>
+              { errors.password && <ErrorMessage>{ errors.password }</ErrorMessage> }
+              <PasswordInput {...props} name="password" placeholder='Veuillez entrer votre mot de passe'></PasswordInput>
+            </FormField>
+            <Lost>Mot de passe oublié ?</Lost>
+
+            { showSpinner && <Spinner></Spinner> }
+
             <StyledButton type="submit">Se connecter</StyledButton>
-          </Buttons>
-        </CtaSection>
-      </FormContainer>
+          </FormContainer>
+        }
+
+        { currentForm === 'register' &&
+          <FormContainer onSubmit={e => handleRegisterSubmit(e)}>
+            <FormField>
+              <Label>E-mail</Label>
+              { errors.email && <ErrorMessage>{ errors.email }</ErrorMessage> }
+              <EmailInput {...props} name="email" placeholder='Veuillez entrer votre e-mail'></EmailInput>
+            </FormField>
+            <FormField>
+              <Label>Mot de passe</Label>
+              { errors.password && <ErrorMessage>{ errors.password }</ErrorMessage> }
+              <PasswordInput {...props} name="password" placeholder='Veuillez entrer votre mot de passe'></PasswordInput>
+            </FormField>
+            <FormField>
+              <Label>Confirmer votre mot de passe</Label>
+              { errors.passwordConfirm && <ErrorMessage>{ errors.passwordConfirm }</ErrorMessage> }
+              <PasswordInput {...props} name="passwordConfirm" placeholder='Veuillez entrer votre mot de passe'></PasswordInput>
+            </FormField>
+            <Lost onClick={e => handleChangeForm('login')}>Déjà inscrit? Se connecter</Lost>
+            { hasError ? <ErrorMessage>{errorMessage}</ErrorMessage> : null }
+            <Condition>
+              <CheckBox name={"privacyChecked"}></CheckBox>
+              <ConditionText>
+                I agree to the processing of personal data and Privacy Policy.
+              </ConditionText>
+              </Condition>
+            <Condition>
+              <CheckBox name={"disclosureChecked"}></CheckBox>
+              <ConditionText>
+                I have read, understand and accept Risks Disclosure and take full responsibility associated with our products.
+                </ConditionText>
+              </Condition>
+            <Condition>
+              <CheckBox name={"newsletterChecked"}></CheckBox>
+              <ConditionText>
+                I want to receive the latest news from Canasite.
+                </ConditionText>
+              </Condition>
+            <StyledButton type="submit">S'inscrire</StyledButton>
+          </FormContainer>
+        }
+
+      </Container>
     );
   }
 };
